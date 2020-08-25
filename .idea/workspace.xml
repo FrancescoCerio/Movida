@@ -1,11 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="839261a5-6c7a-4cf3-8873-f732e3941ede" name="Default Changelist" comment="" />
+    <list default="true" id="839261a5-6c7a-4cf3-8873-f732e3941ede" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Movida/com/company/ceriomollica/MovidaCore.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Movida/com/company/ceriomollica/MovidaCore.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/ceriomollica/HashConcatenamento.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/ceriomollica/HashConcatenamento.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/ceriomollica/MovidaCore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/ceriomollica/MovidaCore.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.txt" beforeDir="false" afterPath="$PROJECT_DIR$/test.txt" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1gPshVkYDWSRkQNKHD8ny4THdO9" />
   <component name="ProjectViewState">
@@ -15,6 +25,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -63,7 +74,8 @@
       <workItem from="1598293047445" duration="7209000" />
       <workItem from="1598353283491" duration="4549000" />
       <workItem from="1598377348713" duration="160000" />
-      <workItem from="1598378109446" duration="443000" />
+      <workItem from="1598378109446" duration="677000" />
+      <workItem from="1598378939005" duration="230000" />
     </task>
     <servers />
   </component>
@@ -71,30 +83,30 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="224" y="73" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1598085913260">
+    <state x="224" y="73" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1598379128435">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="224" y="73" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1440.900@0.0.1440.900" timestamp="1598085913260" />
+    <state x="224" y="73" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1440.900@0.0.1440.900" timestamp="1598379128435" />
     <state x="533" y="166" key="#com.intellij.ide.util.MemberChooser" timestamp="1598302426211">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="533" y="166" key="#com.intellij.ide.util.MemberChooser/0.0.1440.900@0.0.1440.900" timestamp="1598302426211" />
-    <state width="1398" height="215" key="GridCell.Tab.0.bottom" timestamp="1598378596212">
+    <state width="1398" height="215" key="GridCell.Tab.0.bottom" timestamp="1598379212979">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="215" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1598378596212" />
-    <state width="1398" height="215" key="GridCell.Tab.0.center" timestamp="1598378596211">
+    <state width="1398" height="215" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1598379212979" />
+    <state width="1398" height="215" key="GridCell.Tab.0.center" timestamp="1598379212978">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="215" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1598378596211" />
-    <state width="1398" height="215" key="GridCell.Tab.0.left" timestamp="1598378596210">
+    <state width="1398" height="215" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1598379212978" />
+    <state width="1398" height="215" key="GridCell.Tab.0.left" timestamp="1598379212977">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="215" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1598378596210" />
-    <state width="1398" height="215" key="GridCell.Tab.0.right" timestamp="1598378596212">
+    <state width="1398" height="215" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1598379212977" />
+    <state width="1398" height="215" key="GridCell.Tab.0.right" timestamp="1598379212978">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="215" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1598378596212" />
+    <state width="1398" height="215" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1598379212978" />
     <state x="208" y="23" width="1024" height="830" key="SettingsEditor" timestamp="1598110724552">
       <screen x="0" y="0" width="1440" height="900" />
     </state>

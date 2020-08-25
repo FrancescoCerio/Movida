@@ -95,7 +95,7 @@ class HashConcatenamento<K, V> implements MyDictionary<K,V>{
         return null;
     }
 
-    //TODO: controllare, fa schifo
+    //sistemata
     @Override
     public ArrayList<V> values(){
         ArrayList<HashNode<K, V>> temp = bucketArray;
