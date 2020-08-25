@@ -78,18 +78,13 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
 
             // Controllo i permessi di scrittura
             if(f.canWrite()){
-
                 // Uso un BufferedWriter passando un FileWriter con append settato a false
                 // in modo da sovrascrivere dall'inizio il nuovo file
                 BufferedWriter bw = new BufferedWriter(new FileWriter(f.getName(), false));
-                System.out.println("ciao");
                 Movie[] m = this.movies.values().toArray(new Movie[0]);
-                System.out.println(m.length);
                 for (Movie movie : m) {
                     bw.write("Title: " + movie.getTitle());
-                    System.out.println("ciao");
                     bw.newLine();
-                    System.out.println(movie.getTitle());
                     bw.write("Year: " + movie.getYear().toString());
                     bw.newLine();
                     bw.write("Director: " + movie.getDirector().getName());
