@@ -58,8 +58,8 @@ public class Movie {
 	// Ritorno il cast di un film come stringa formattata con le virgole
 	public String getPersonCast(){
 		StringBuilder actors = new StringBuilder();
-		for(int i = 0; i < this.cast.length; i++){
-			actors.append(this.cast[i].toString()).append(", ");
+		for (Person person : this.cast) {
+			actors.append(person.getName()).append(", ");
 		}
 		return actors.toString();
 	}

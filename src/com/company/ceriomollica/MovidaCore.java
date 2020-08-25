@@ -89,6 +89,9 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
                     bw.newLine();
                     bw.write("Director: " + movie.getDirector().getName());
                     bw.newLine();
+                    /* TODO: La funzione getPersonCast() ritorna un unica stringa con i nomi degli attori
+                    quando dovrebbe ritornare il nome di ogni singolo Attore e dopo concatenarli con la virgola (credo)
+                    */
                     bw.write("Cast: " + movie.getPersonCast());
                     bw.newLine();
                     bw.write("Votes: " + movie.getVotes().toString());
@@ -124,7 +127,7 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
      *
      * @return numero di film totali
      */
-    //TODO: testare, non sono sicuro funzioni
+    //TODO: testare, dovrebbe essere giusta
     public int countMovies(){
         return this.movies.values().toArray().length;
         //return this.lhm.values().toArray().length;
