@@ -93,7 +93,7 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
                     bw.newLine();
                     bw.write("Votes: " + movie.getVotes().toString());
                     bw.newLine();
-                    bw.newLine();
+                    bw.newLine(); // Aggiungo una linea per separare i campi
                 }
                 bw.close();
             }
@@ -116,7 +116,6 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
     public void clear(){
         this.db_utils = new DBUtils();
         this.movies = new HashConcatenamento<>();
-
         //TODO: Aggiungere altre strutture una volta implementate
     }
 
@@ -248,15 +247,13 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
     @Override
     public boolean setMap(MapImplementation m) {
         boolean value = false;
-        if(m == MapImplementation.BTree){
+        if(m == MapImplementation.BTree && this.movies instanceof BTree){
             value = true;
             this.movies = new BTree<>();
-            //TODO: impostare algoritmo di dizionario BTree
         }
-        if(m == MapImplementation.HashConcatenamento){
+        if(m == MapImplementation.HashConcatenamento  && this.movies instanceof HashConcatenamento){
             value = true;
             this.movies = new HashConcatenamento<>();
-            //TODO: impostare algoritmo di dizionario HashConcatenamento
         }
         return value;
     }

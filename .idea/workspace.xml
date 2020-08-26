@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="839261a5-6c7a-4cf3-8873-f732e3941ede" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/company/ceriomollica/MovidaCore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/ceriomollica/MovidaCore.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -71,7 +72,7 @@
       <workItem from="1598377348713" duration="160000" />
       <workItem from="1598378109446" duration="677000" />
       <workItem from="1598378939005" duration="1830000" />
-      <workItem from="1598428982216" duration="2692000" />
+      <workItem from="1598428982216" duration="4207000" />
     </task>
     <servers />
   </component>
@@ -79,10 +80,10 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="224" y="73" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1598379128435">
+    <state x="224" y="73" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1598432471965">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="224" y="73" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1440.900@0.0.1440.900" timestamp="1598379128435" />
+    <state x="224" y="73" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1440.900@0.0.1440.900" timestamp="1598432471965" />
     <state x="533" y="166" key="#com.intellij.ide.util.MemberChooser" timestamp="1598302426211">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
