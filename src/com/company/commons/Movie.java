@@ -59,7 +59,7 @@ public class Movie {
 	public String getPersonCast(){
 		StringBuilder actors = new StringBuilder();
 		for (Person person : this.cast) {
-			actors.append(person.getName()).append(", ");
+			actors.append("|").append(person.getName()).append("|").append(", ");
 		}
 		return actors.toString();
 	}

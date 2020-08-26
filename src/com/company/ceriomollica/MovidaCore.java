@@ -83,18 +83,18 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
                 BufferedWriter bw = new BufferedWriter(new FileWriter(f.getName(), false));
                 Movie[] m = this.movies.values().toArray(new Movie[0]);
                 for (Movie movie : m) {
-                    bw.write("Title: " + movie.getTitle());
+                    bw.write("Title: " + "|" + movie.getTitle() + "|");
                     bw.newLine();
-                    bw.write("Year: " + movie.getYear().toString());
+                    bw.write("Year: " + "|" + movie.getYear().toString() + "|");
                     bw.newLine();
-                    bw.write("Director: " + movie.getDirector().getName());
+                    bw.write("Director: " + "|" + movie.getDirector().getName() + "|");
                     bw.newLine();
                     /* TODO: La funzione getPersonCast() ritorna un unica stringa con i nomi degli attori
                     quando dovrebbe ritornare il nome di ogni singolo Attore e dopo concatenarli con la virgola (credo)
                     */
                     bw.write("Cast: " + movie.getPersonCast());
                     bw.newLine();
-                    bw.write("Votes: " + movie.getVotes().toString());
+                    bw.write("Votes: " + "|" + movie.getVotes().toString() + "|");
                     bw.newLine();
                 }
                 bw.close();

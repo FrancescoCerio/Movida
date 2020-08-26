@@ -18,7 +18,7 @@ public class DBUtils {
 
         try {
             Scanner input = new Scanner(f);
-            while (input.hasNextLine()) {//scannerizzo il file di testo fino all'esistenza di nuove linee
+            while (input.hasNextLine()) {   //scannerizzo il file di testo fino all'esistenza di nuove linee
 
                 for (int j = 0; j < 5; j++) {
                     String line = input.nextLine();
@@ -29,15 +29,15 @@ public class DBUtils {
                 }
 
                 String[] filmF = this.splitRecord(rcFilm); //funzione che splitta il contenuto della linea e restituisce i valori
-                //a destra che sono i valori da salvare come contenuto nei record
+                                                           //a destra che sono i valori da salvare come contenuto nei record
                 Movie filmToAdd = this.createRecord(filmF); //creo un tipo Movie, e vi associo tramite la funzione createRecord,
-                //i campi del record associati al film estrato dal file.
-                Film.add(filmToAdd); //aggiungo alla lista di Movie il contenuto del film (di tipo Movie) estratto
+                                                            //i campi del record associati al film estrato dal file.
+                Film.add(filmToAdd);                        //aggiungo alla lista di Movie il contenuto del film (di tipo Movie) estratto
 
                 if (input.hasNextLine()) {
                     if (!input.nextLine().trim().isEmpty()) {
                         System.out.println("ATTENZIONE! Separare il contenuto dei film con una linea vuota!");
-                        throw new MovidaFileException(); //richiamo un eccezione se non trovo nella riga successiva una corrispondenza *:*
+                        throw new MovidaFileException();    //richiamo un eccezione se non trovo nella riga successiva una corrispondenza *:*
                     }
                 }
             }
@@ -59,10 +59,10 @@ public class DBUtils {
 
 
     public Movie createRecord(String[] Film){
-        String title = Film[0];
+        String title = Film[0].trim();
         Integer year = Integer.parseInt(Film[1].trim());
-        Person director = new Person(Film[2]);
-        String[] castMov = Film[3].split(",");
+        Person director = new Person(Film[2].trim());
+        String[] castMov = Film[3].trim().split(",");
         Person[] cast = this.getCastNames(castMov);
         Integer votes = Integer.parseInt(Film[4].trim());
         return new Movie(title,year,votes,cast,director);
@@ -71,7 +71,7 @@ public class DBUtils {
     public Person[] getCastNames(String[] names){
         Person[] cast = new Person[names.length];
         for(int i = 0; i < names.length; i++){
-            cast[i] = new Person(names[i]);
+            cast[i] = new Person(names[i].trim());
         }
         return cast;
     }
