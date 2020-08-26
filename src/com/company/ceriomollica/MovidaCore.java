@@ -20,7 +20,7 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
 
     MovidaCore(){
         this.db_utils = new DBUtils();
-        this.movies = new HashConcatenamento<String, Movie>();
+        this.movies = new BTree<>();
         //this.t = new BTree<String, Movie>();
         this.collaboration = new Graph<>();
     }

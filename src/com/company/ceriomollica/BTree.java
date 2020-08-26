@@ -190,7 +190,10 @@ public class BTree<K extends Comparable<K>, V> implements MyDictionary<K,V>{
     @Override
     public ArrayList<V> values() {
         ArrayList<V> values = new ArrayList<>();
-        return null;
+        for(int i = 0; i < this.n; i++){
+            values.add((V) this.root.children[i]);
+        }
+        return values;
     }
 
     /**
