@@ -15,11 +15,7 @@ class Graph<T> {
 
     // This function adds the edge
     // between source to destination
-    public void addEdge(T source,
-                        T destination,
-                        boolean bidirectional)
-    {
-
+    public void addEdge(T source, T destination, boolean bidirectional){
         if (!map.containsKey(source))
             addVertex(source);
 
@@ -27,27 +23,25 @@ class Graph<T> {
             addVertex(destination);
 
         map.get(source).add(destination);
-        if (bidirectional == true) {
+        if (bidirectional) {
             map.get(destination).add(source);
         }
     }
 
     // This function gives the count of vertices
-    public void getVertexCount()
-    {
+    public void getVertexCount(){
         System.out.println("The graph has "
                 + map.keySet().size()
                 + " vertex");
     }
 
     // This function gives the count of edges
-    public void getEdgesCount(boolean bidirection)
-    {
+    public void getEdgesCount(boolean bidirection){
         int count = 0;
         for (T v : map.keySet()) {
             count += map.get(v).size();
         }
-        if (bidirection == true) {
+        if (bidirection) {
             count = count / 2;
         }
         System.out.println("The graph has "
@@ -57,8 +51,7 @@ class Graph<T> {
 
     // This function gives whether
     // a vertex is present or not.
-    public void hasVertex(T s)
-    {
+    public void hasVertex(T s){
         if (map.containsKey(s)) {
             System.out.println("The graph contains "
                     + s + " as a vertex.");
@@ -70,8 +63,7 @@ class Graph<T> {
     }
 
     // This function gives whether an edge is present or not.
-    public void hasEdge(T s, T d)
-    {
+    public void hasEdge(T s, T d){
         if (map.get(s).contains(d)) {
             System.out.println("The graph has an edge between "
                     + s + " and " + d + ".");
@@ -84,14 +76,13 @@ class Graph<T> {
 
     // Prints the adjancency list of each vertex.
     @Override
-    public String toString()
-    {
+    public String toString(){
         StringBuilder builder = new StringBuilder();
 
         for (T v : map.keySet()) {
-            builder.append(v.toString() + ": ");
+            builder.append(v.toString()).append(": ");
             for (T w : map.get(v)) {
-                builder.append(w.toString() + " ");
+                builder.append(w.toString()).append(" ");
             }
             builder.append("\n");
         }
