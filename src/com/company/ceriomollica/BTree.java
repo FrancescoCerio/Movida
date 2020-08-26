@@ -90,9 +90,6 @@ public class BTree<K extends Comparable<K>, V> implements MyDictionary<K,V>{
         return get(root, key, height);
     }
 
-
-
-
     private V get(Node x, K key, int ht) {
         Entry[] children = x.children;
 
@@ -189,8 +186,10 @@ public class BTree<K extends Comparable<K>, V> implements MyDictionary<K,V>{
         return null;
     }
 
+    // TODO: implementare values() in modo da far ritornare il valore di tutte le chiavi presenti nel BTree sotto forma di Arraylist
     @Override
     public ArrayList<V> values() {
+        ArrayList<V> values = new ArrayList<>();
         return null;
     }
 

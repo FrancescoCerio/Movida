@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="839261a5-6c7a-4cf3-8873-f732e3941ede" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Movida/com/company/ceriomollica/MovidaCore.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Movida/com/company/ceriomollica/MovidaCore.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/ceriomollica/MovidaCore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/ceriomollica/MovidaCore.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/commons/Movie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/commons/Movie.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.txt" beforeDir="false" afterPath="$PROJECT_DIR$/test.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/ceriomollica/BTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/ceriomollica/BTree.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,6 +71,7 @@
       <workItem from="1598377348713" duration="160000" />
       <workItem from="1598378109446" duration="677000" />
       <workItem from="1598378939005" duration="1830000" />
+      <workItem from="1598428982216" duration="1544000" />
     </task>
     <servers />
   </component>
