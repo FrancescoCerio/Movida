@@ -93,6 +93,7 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
                     bw.newLine();
                     bw.write("Votes: " + movie.getVotes().toString());
                     bw.newLine();
+                    bw.newLine();
                 }
                 bw.close();
             }
