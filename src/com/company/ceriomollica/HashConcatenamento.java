@@ -104,8 +104,6 @@ class HashConcatenamento<K, V> implements MyDictionary<K,V>{
         for (HashNode<K, V> headNode : temp) {
             while (headNode != null) {
                 values.add(headNode.getValue());
-                System.out.print(headNode.getKey().hashCode() + " ");
-                System.out.println(headNode.getKey().toString());
                 headNode = headNode.next;
             }
         }
