@@ -19,7 +19,7 @@ class HashConcatenamento<K, V> implements MyDictionary<K,V>{
     // empty chains.
     public HashConcatenamento() {
         bucketArray = new ArrayList<>();
-        numBuckets = 1000;
+        numBuckets = 10;
         size = 0;
 
         // Create empty chains
@@ -104,6 +104,8 @@ class HashConcatenamento<K, V> implements MyDictionary<K,V>{
         for (HashNode<K, V> headNode : temp) {
             while (headNode != null) {
                 values.add(headNode.getValue());
+                System.out.print(headNode.getKey().hashCode() + " ");
+                System.out.println(headNode.getKey().toString());
                 headNode = headNode.next;
             }
         }

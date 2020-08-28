@@ -4,7 +4,7 @@
     <list default="true" id="839261a5-6c7a-4cf3-8873-f732e3941ede" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Movida/com/company/ceriomollica/MovidaCore.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Movida/com/company/ceriomollica/MovidaCore.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/ceriomollica/BTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/ceriomollica/BTree.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/ceriomollica/HashConcatenamento.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/ceriomollica/HashConcatenamento.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/company/ceriomollica/MovidaCore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/ceriomollica/MovidaCore.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test.txt" beforeDir="false" afterPath="$PROJECT_DIR$/test.txt" afterDir="false" />
     </list>
@@ -75,7 +75,8 @@
       <workItem from="1598377348713" duration="160000" />
       <workItem from="1598378109446" duration="677000" />
       <workItem from="1598378939005" duration="1830000" />
-      <workItem from="1598428982216" duration="6254000" />
+      <workItem from="1598428982216" duration="6406000" />
+      <workItem from="1598606727657" duration="541000" />
     </task>
     <servers />
   </component>
@@ -91,25 +92,25 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="533" y="166" key="#com.intellij.ide.util.MemberChooser/0.0.1440.900@0.0.1440.900" timestamp="1598302426211" />
-    <state width="1398" height="77" key="GridCell.Tab.0.bottom" timestamp="1598437928957">
+    <state width="1398" height="290" key="GridCell.Tab.0.bottom" timestamp="1598607318021">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="77" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1598437928957" />
+    <state width="1398" height="290" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1598607318021" />
     <state width="1398" height="215" key="GridCell.Tab.0.bottom/0.23.1440.828@0.23.1440.828" timestamp="1598379257628" />
-    <state width="1398" height="77" key="GridCell.Tab.0.center" timestamp="1598437928956">
+    <state width="1398" height="290" key="GridCell.Tab.0.center" timestamp="1598607318020">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="77" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1598437928956" />
+    <state width="1398" height="290" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1598607318020" />
     <state width="1398" height="215" key="GridCell.Tab.0.center/0.23.1440.828@0.23.1440.828" timestamp="1598379257627" />
-    <state width="1398" height="77" key="GridCell.Tab.0.left" timestamp="1598437928955">
+    <state width="1398" height="290" key="GridCell.Tab.0.left" timestamp="1598607318019">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="77" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1598437928955" />
+    <state width="1398" height="290" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1598607318019" />
     <state width="1398" height="215" key="GridCell.Tab.0.left/0.23.1440.828@0.23.1440.828" timestamp="1598379257624" />
-    <state width="1398" height="77" key="GridCell.Tab.0.right" timestamp="1598437928956">
+    <state width="1398" height="290" key="GridCell.Tab.0.right" timestamp="1598607318020">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="77" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1598437928956" />
+    <state width="1398" height="290" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1598607318020" />
     <state width="1398" height="215" key="GridCell.Tab.0.right/0.23.1440.828@0.23.1440.828" timestamp="1598379257627" />
     <state x="208" y="23" width="1024" height="830" key="SettingsEditor" timestamp="1598110724552">
       <screen x="0" y="0" width="1440" height="900" />
@@ -119,10 +120,10 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state width="500" height="400" key="SwitcherDM/0.0.1440.900@0.0.1440.900" timestamp="1598085693376" />
-    <state x="397" y="282" key="com.intellij.ide.util.TipDialog" timestamp="1598428987511">
+    <state x="397" y="282" key="com.intellij.ide.util.TipDialog" timestamp="1598606742847">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="397" y="282" key="com.intellij.ide.util.TipDialog/0.0.1440.900@0.0.1440.900" timestamp="1598428987511" />
+    <state x="397" y="282" key="com.intellij.ide.util.TipDialog/0.0.1440.900@0.0.1440.900" timestamp="1598606742847" />
     <state x="385" y="196" key="search.everywhere.popup" timestamp="1598085701729">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
