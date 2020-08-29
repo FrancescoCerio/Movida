@@ -10,19 +10,22 @@ package com.company.ceriomollica;
 import com.company.commons.*;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Map;
 
 
 public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMovidaCollaborations {
     private DBUtils db_utils;
     private MyDictionary<String, Movie> movies;
-    private Graph<Object> collaboration;
+    private Graph collaboration;
     //TODO: implementare dizionari per movie e persone da usare come storage interno
 
     MovidaCore(){
         this.db_utils = new DBUtils();
         this.movies = new HashConcatenamento<>();
         //this.t = new BTree<String, Movie>();
-        this.collaboration = new Graph<>();
+        this.collaboration = new Graph();
     }
 
     /** GESTIONE DEL DATABASE **/
@@ -57,7 +60,21 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
                  this.movies.delete(title);
              }
              this.movies.insert(title, film);
+
          }
+
+         Movie[] collab_movies = this.movies.values().toArray(new Movie[0]);
+         for(Movie m : collab_movies){
+             this.collaboration.populateCollaboration(m);
+         }
+        /* TODO: testare
+         Person a = new Person("Robert De Niro");
+         Person[] b = this.collaboration.getDirectCollaboratorsOf(a);
+         for(Person c : b){
+             System.out.println(c.getName());
+         }
+         
+         */
      }
 
 

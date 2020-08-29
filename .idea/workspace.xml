@@ -2,12 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="839261a5-6c7a-4cf3-8873-f732e3941ede" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/com/company/ceriomollica/HashConcatenamento.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/ceriomollica/HashConcatenamento.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Movida/com/company/ceriomollica/Graph.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Movida/com/company/ceriomollica/Graph.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Movida/com/company/ceriomollica/MovidaCore.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Movida/com/company/ceriomollica/MovidaCore.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Movida/com/company/commons/Collaboration.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Movida/com/company/commons/Collaboration.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/ceriomollica/Graph.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/ceriomollica/Graph.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/ceriomollica/MovidaCore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/ceriomollica/MovidaCore.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/commons/Collaboration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/commons/Collaboration.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -72,7 +86,7 @@
       <workItem from="1598378109446" duration="677000" />
       <workItem from="1598378939005" duration="1830000" />
       <workItem from="1598428982216" duration="6406000" />
-      <workItem from="1598606727657" duration="775000" />
+      <workItem from="1598606727657" duration="13572000" />
     </task>
     <servers />
   </component>
@@ -84,30 +98,34 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="224" y="73" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1440.900@0.0.1440.900" timestamp="1598432471965" />
-    <state x="533" y="166" key="#com.intellij.ide.util.MemberChooser" timestamp="1598302426211">
+    <state x="533" y="166" key="#com.intellij.ide.util.MemberChooser" timestamp="1598620671134">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="533" y="166" key="#com.intellij.ide.util.MemberChooser/0.0.1440.900@0.0.1440.900" timestamp="1598302426211" />
-    <state width="1398" height="524" key="GridCell.Tab.0.bottom" timestamp="1598607609538">
+    <state x="533" y="166" key="#com.intellij.ide.util.MemberChooser/0.0.1440.900@0.0.1440.900" timestamp="1598620671134" />
+    <state x="458" y="204" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1598697667539">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="524" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1598607609538" />
-    <state width="1398" height="215" key="GridCell.Tab.0.bottom/0.23.1440.828@0.23.1440.828" timestamp="1598379257628" />
-    <state width="1398" height="524" key="GridCell.Tab.0.center" timestamp="1598607609537">
+    <state x="458" y="204" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1440.900@0.0.1440.900" timestamp="1598697667539" />
+    <state width="1398" height="267" key="GridCell.Tab.0.bottom" timestamp="1598702348166">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="524" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1598607609537" />
-    <state width="1398" height="215" key="GridCell.Tab.0.center/0.23.1440.828@0.23.1440.828" timestamp="1598379257627" />
-    <state width="1398" height="524" key="GridCell.Tab.0.left" timestamp="1598607609537">
+    <state width="1398" height="267" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1598702348166" />
+    <state width="1398" height="267" key="GridCell.Tab.0.bottom/0.23.1440.828@0.23.1440.828" timestamp="1598702214509" />
+    <state width="1398" height="267" key="GridCell.Tab.0.center" timestamp="1598702348163">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="524" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1598607609537" />
-    <state width="1398" height="215" key="GridCell.Tab.0.left/0.23.1440.828@0.23.1440.828" timestamp="1598379257624" />
-    <state width="1398" height="524" key="GridCell.Tab.0.right" timestamp="1598607609538">
+    <state width="1398" height="267" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1598702348163" />
+    <state width="1398" height="267" key="GridCell.Tab.0.center/0.23.1440.828@0.23.1440.828" timestamp="1598702214508" />
+    <state width="1398" height="267" key="GridCell.Tab.0.left" timestamp="1598702348163">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="524" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1598607609538" />
-    <state width="1398" height="215" key="GridCell.Tab.0.right/0.23.1440.828@0.23.1440.828" timestamp="1598379257627" />
+    <state width="1398" height="267" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1598702348163" />
+    <state width="1398" height="267" key="GridCell.Tab.0.left/0.23.1440.828@0.23.1440.828" timestamp="1598702214507" />
+    <state width="1398" height="267" key="GridCell.Tab.0.right" timestamp="1598702348164">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="267" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1598702348164" />
+    <state width="1398" height="267" key="GridCell.Tab.0.right/0.23.1440.828@0.23.1440.828" timestamp="1598702214508" />
     <state x="208" y="23" width="1024" height="830" key="SettingsEditor" timestamp="1598110724552">
       <screen x="0" y="0" width="1440" height="900" />
     </state>

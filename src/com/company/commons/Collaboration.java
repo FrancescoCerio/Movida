@@ -22,6 +22,10 @@ public class Collaboration {
 		return actorB;
 	}
 
+	public void addMovie(Movie m){
+		this.movies.add(m);
+	}
+
 	public Double getScore(){
 		
 		Double score = 0.0;

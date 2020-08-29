@@ -1,93 +1,65 @@
 package com.company.ceriomollica;
 
+import com.company.commons.Collaboration;
+import com.company.commons.IMovidaCollaborations;
+import com.company.commons.Movie;
+import com.company.commons.Person;
+
 import java.util.*;
 
-class Graph<T> {
+public class Graph implements IMovidaCollaborations {
 
-    // We use Hashmap to store the edges in the graph
-    private Map<T, List<T> > map = new HashMap<>();
+    HashMap<Person, ArrayList<Collaboration>> graph = new HashMap<>();
 
-    // This function adds a new vertex to the graph
-    public void addVertex(T s)
-    {
-        map.put(s, new LinkedList<T>());
-    }
+    // Funzione per caricare creare l'insieme delle collaborazioni nel grafo
+    public void populateCollaboration(Movie movie){
+        for(Person first_actor : movie.getCast()){
+            this.graph.computeIfAbsent(first_actor, k -> new ArrayList<>());
 
-    // This function adds the edge
-    // between source to destination
-    public void addEdge(T source, T destination, boolean bidirectional){
-        if (!map.containsKey(source))
-            addVertex(source);
+            // Per ogni persona del cast controllo creo le collaborazioni necessarie
+            for(Person other_actor : movie.getCast()){
+                // Controllo se l'attore preso in considerazione ora sia già presente
+                if(!other_actor.equals(first_actor)){
+                    ArrayList<Collaboration> collabs = this.graph.get(first_actor);
+                    Collaboration c = new Collaboration(first_actor, other_actor);
 
-        if (!map.containsKey(destination))
-            addVertex(destination);
-
-        map.get(source).add(destination);
-        if (bidirectional) {
-            map.get(destination).add(source);
-        }
-    }
-
-    // This function gives the count of vertices
-    public void getVertexCount(){
-        System.out.println("The graph has "
-                + map.keySet().size()
-                + " vertex");
-    }
-
-    // This function gives the count of edges
-    public void getEdgesCount(boolean bidirection){
-        int count = 0;
-        for (T v : map.keySet()) {
-            count += map.get(v).size();
-        }
-        if (bidirection) {
-            count = count / 2;
-        }
-        System.out.println("The graph has "
-                + count
-                + " edges.");
-    }
-
-    // This function gives whether
-    // a vertex is present or not.
-    public void hasVertex(T s){
-        if (map.containsKey(s)) {
-            System.out.println("The graph contains "
-                    + s + " as a vertex.");
-        }
-        else {
-            System.out.println("The graph does not contain "
-                    + s + " as a vertex.");
-        }
-    }
-
-    // This function gives whether an edge is present or not.
-    public void hasEdge(T s, T d){
-        if (map.get(s).contains(d)) {
-            System.out.println("The graph has an edge between "
-                    + s + " and " + d + ".");
-        }
-        else {
-            System.out.println("The graph has no edge between "
-                    + s + " and " + d + ".");
-        }
-    }
-
-    // Prints the adjancency list of each vertex.
-    @Override
-    public String toString(){
-        StringBuilder builder = new StringBuilder();
-
-        for (T v : map.keySet()) {
-            builder.append(v.toString()).append(": ");
-            for (T w : map.get(v)) {
-                builder.append(w.toString()).append(" ");
+                    // Controllo se la collaborazione è già presente
+                    if(collabs.contains(c)){
+                        // Nel caso fosse vero prendo il suo indice e aggiungo il movie corrente alla lista di movies
+                        int i = collabs.indexOf(c);
+                        collabs.get(i).addMovie(movie);
+                    } else {
+                        // Altrimenti aggiungo il movie corrente e inserisco la collaborazione nella lista di collaborazioni dell'attore
+                        c.addMovie(movie);
+                        collabs.add(c);
+                    }
+                }
             }
-            builder.append("\n");
         }
 
-        return (builder.toString());
+    }
+
+    @Override
+    public Person[] getDirectCollaboratorsOf(Person actor) {
+        ArrayList<Collaboration> collabs = this.graph.get(actor);
+        Person[] direct_collaborators = new Person[collabs.size()];
+
+        int i = 0;
+        for(Collaboration c : collabs){
+            direct_collaborators[i] = c.getActorB();
+            i++;
+        }
+        return direct_collaborators;
+    }
+
+    @Override
+    public Person[] getTeamOf(Person actor) {
+        return new Person[0];
+    }
+
+    @Override
+    public Collaboration[] maximizeCollaborationsInTheTeamOf(Person actor) {
+        return new Collaboration[0];
     }
 }
 
