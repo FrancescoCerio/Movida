@@ -19,16 +19,15 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
     private DBUtils db_utils;
     private MyDictionary<String, Movie> movies;
     private Graph collaboration;
+    private MyDictionary<String, Character> character;
     //TODO: implementare dizionari per movie e persone da usare come storage interno
 
     MovidaCore(){
         this.db_utils = new DBUtils();
         this.movies = new HashConcatenamento<>();
-        //this.t = new BTree<String, Movie>();
+        this.character = new HashConcatenamento<>();
         this.collaboration = new Graph();
     }
-
-    /** GESTIONE DEL DATABASE **/
 
     /**
      * Carica i dati da un file, organizzato secondo il formato MOVIDA (vedi esempio-formato-dati.txt)
@@ -61,20 +60,38 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
              }
              this.movies.insert(title, film);
 
+             // Popolo il dizionario dei Character per ogni persona presente all'interno di un film
+
+             // Director
+             String director = film.getDirector().getName().toLowerCase().replaceAll("\\s", "");
+             // Cerco se il Director è già presente nel Dizionario dei Character
+             // Se non dovesse essere presente lo inserisco creando un nuovo oggetto inizializzando a zero il numero di film
+             Character character_director = this.character.search(director);
+             if(character_director == null){
+                 this.character.insert(director, new Character(director, 0));
+             }
+
+             // Cast
+             for(Person p : film.getCast()){
+                 String current_actor = p.getName().trim().toLowerCase().replaceAll("\\s", "");
+                 Character actor = this.character.search(current_actor);
+
+                 // Vedo se l'attore è presente nel dizionario e incremento il numero di film
+                 // altrimenti lo inserisco
+                 if(actor == null)
+                     this.character.insert(current_actor, new Character(current_actor, 0));
+                 else
+                     actor.incMovie();
+             }
+
          }
 
          Movie[] collab_movies = this.movies.values().toArray(new Movie[0]);
          for(Movie m : collab_movies){
              this.collaboration.populateCollaboration(m);
          }
-        /* TODO: testare
-         Person a = new Person("Robert De Niro");
-         Person[] b = this.collaboration.getDirectCollaboratorsOf(a);
-         for(Person c : b){
-             System.out.println(c.getName());
-         }
-         
-         */
+
+
      }
 
 
@@ -144,7 +161,6 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
     //TODO: testare, dovrebbe essere giusta
     public int countMovies(){
         return this.movies.values().toArray().length;
-        //return this.lhm.values().toArray().length;
     }
 
     /**
@@ -153,7 +169,7 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
      * @return numero di persone totali
      */
     public int countPeople(){
-        return 0;
+        return this.character.values().size();
     }
 
     /**
@@ -190,7 +206,8 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
      */
 
     public Person getPersonByName(String name){
-        return null;
+        Person p = this.character.search(name);
+        return p;
     }
 
 
@@ -200,7 +217,8 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
      * @return array di film
      */
     public Movie[] getAllMovies(){
-        return null;
+        Movie[] m = this.movies.values().toArray(new Movie[0]);
+        return m;
     }
 
     /**
@@ -209,7 +227,8 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
      * @return array di persone
      */
     public Person[] getAllPeople(){
-        return null;
+        Person[] p = this.character.values().toArray(new Person[0]);
+        return p;
     }
 
     /**
@@ -222,7 +241,7 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
      */
     @Override
     public Person[] getDirectCollaboratorsOf(Person actor) {
-        return new Person[0];
+        return this.collaboration.getDirectCollaboratorsOf(actor);
     }
 
     /**
@@ -234,7 +253,7 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
      */
     @Override
     public Person[] getTeamOf(Person actor) {
-        return new Person[0];
+        return this.collaboration.getTeamOf(actor);
     }
 
     /**

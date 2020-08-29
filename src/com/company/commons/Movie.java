@@ -61,7 +61,7 @@ public class Movie {
 		for (Person person : this.cast) {
 			actors.append(person.getName()).append(", ");
 		}
-		return actors.toString();
+		return actors.toString().substring(0, actors.toString().length() - 2);
 	}
 	
 	
