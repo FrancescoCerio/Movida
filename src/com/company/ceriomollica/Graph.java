@@ -42,6 +42,8 @@ public class Graph implements IMovidaCollaborations {
     @Override
     public Person[] getDirectCollaboratorsOf(Person actor) {
         ArrayList<Collaboration> collabs = this.graph.get(actor);
+        System.out.println(this.graph.size());
+        System.out.println(collabs.isEmpty());
         System.out.println(collabs.size());
         Person[] direct_collaborators = new Person[collabs.size()];
 

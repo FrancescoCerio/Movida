@@ -26,4 +26,8 @@ public class Character extends Person {
     public void incMovie(){
         this.num_movies++;
     }
+
+    public void decMovie(){
+        this.num_movies--;
+    }
 }

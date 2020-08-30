@@ -91,6 +91,11 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
              this.collaboration.populateCollaboration(m);
          }
 
+         Person p = new Person("Robert De Niro");
+         for(Person q : getDirectCollaboratorsOf(p)){
+             System.out.println(q.getName());
+         }
+
 
      }
 
@@ -150,6 +155,8 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
     public void clear(){
         this.db_utils = new DBUtils();
         this.movies = new HashConcatenamento<>();
+        this.character = new HashConcatenamento<>();
+        this.collaboration = new Graph();
         //TODO: Aggiungere altre strutture una volta implementate
     }
 
@@ -182,6 +189,11 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
     public boolean deleteMovieByTitle(String title){
         Movie temp = this.movies.search(title);
         if(temp != null){
+            // Decremento di 1 il numero di film a cui ogni attore del cast ha preso parte
+            for(Person p : temp.getCast()){
+                Character actor = this.character.search(p.getName());
+                actor.decMovie();
+            }
             this.movies.delete(temp.getTitle());
             return true;
         } else
@@ -206,8 +218,7 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
      */
 
     public Person getPersonByName(String name){
-        Person p = this.character.search(name);
-        return p;
+        return this.character.search(name);
     }
 
 
@@ -217,8 +228,7 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
      * @return array di film
      */
     public Movie[] getAllMovies(){
-        Movie[] m = this.movies.values().toArray(new Movie[0]);
-        return m;
+        return this.movies.values().toArray(new Movie[0]);
     }
 
     /**
@@ -227,17 +237,15 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
      * @return array di persone
      */
     public Person[] getAllPeople(){
-        Person[] p = this.character.values().toArray(new Person[0]);
-        return p;
+        return this.character.values().toArray(new Person[0]);
     }
 
     /**
      * Per questa ricerca bisogna trovare i diretti collaboratori di un attore passato come parametro.
-     * Effettuo una ricerca in ampiezza fermandomi al primo grado
-     * di attraversamento del grafo avente come radice l'attore.
+     * Effettuo una ricerca dell'attore passato come parametro e scorro la lista dei suoi collaboratori
      *
      * @param actor attore di cui cercare i collaboratori diretti
-     * @return
+     * @return record associato all'array di Person
      */
     @Override
     public Person[] getDirectCollaboratorsOf(Person actor) {
@@ -329,15 +337,13 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
         return new Person[0];
     }
 
-    /** Funzione main per il test
-     * Al momento loadFromFile() e saveToFile() funzionano :D
-     * @param args
-     * @throws IOException
-     */
+
+
     public static void main(String[] args) throws IOException {
         MovidaCore m = new MovidaCore();
         m.loadFromFile(new File("/Users/francesco/IdeaProjects/Movida/src/com/company/commons/esempio-formato-dati.txt"));
         File file = new File("test.txt");
         m.saveToFile(file);
     }
+
 }
