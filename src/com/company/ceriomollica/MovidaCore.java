@@ -13,6 +13,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Map;
+import java.util.Stack;
 
 
 public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMovidaCollaborations {
@@ -20,10 +21,11 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
     private MyDictionary<String, Movie> movies;
     private Graph collaboration;
     private MyDictionary<String, Character> character;
+    //private Sorty sorts;
     //TODO: definire interfaccia per gli algoritmi di ordinamento
 
     MovidaCore(){
-        //this.sorter=new SelectionSort();
+        //this.sorts = new SelectionSort();
         this.db_utils = new DBUtils();
         this.movies = new HashConcatenamento<>();
         this.character = new HashConcatenamento<>();
@@ -309,7 +311,7 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
         ArrayList<Movie> m = new ArrayList<>();
 	Movie[] listMov = this.movies.values().toArray(new Movie[0]);
 	for (Movie mov:listMov){
-		if (mov.compareTo(mov)){
+		if (mov.equals(mov)){
 			m.add(mov);
 		    }
 	}
@@ -321,7 +323,7 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
         ArrayList<Movie> m = new ArrayList<>();
 	Movie[] listMov = this.movies.values().toArray(new Movie[0]);
 	for(Movie mov:listMov){
-		if(mov.getYear().equals(year)){				
+		if(mov.getYear().equals(year)) {
 			m.add(mov);
 		}
 	}
@@ -333,7 +335,7 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
         ArrayList<Movie> m = new ArrayList<>();
 	Movie[] listMov = this.movies.values().toArray(new Movie[0]);
 	for(Movie mov:listMov){
-		if(m.getDirector().compareTo(name){
+		if(mov.getDirector().equals(name)) {
 			m.add(mov);
 		}
 	}
@@ -355,23 +357,17 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
         Movie[] m = new Movie[N];
 	Movie[] listMov = this.movies.values().toArray(new Movie[0]);
 	Stack<Movie> temp = new Stack<Movie>();
-	listMov.sorter.sort("year", listMov);
-	if (listMov.isEmpty()){
-		return null;
-	}else{
-		for(Movie el:listMov){
-			temp.push(el);
-		}
+	//listMov.sort("year", listMov);
+
+	for(Movie el:listMov){
+	    temp.push(el);
 	}
-	listMov = null;
-	while(!temp.isEmpty()){
-		listMov.add(temp.pop());
-	}
-	    if (listMov.lenght <= N){
+
+	if (listMov.length <= N){
 		return listMov;
 	}else{
-		for(int i; i < n; i++){
-			m[i] = listMov.get(i);
+		for(int i = 0; i < N; i++){
+			m[i] = (Movie) temp.get(i);
 		}
 		return m;
 	}
@@ -379,26 +375,20 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
 
     @Override
     public Person[] searchMostActiveActors(Integer N) {
-	Charachter[] c = new Character[N];
-	Charachter[] listPeop = this.character.values().toArray(new Character[0]);
-	this.sort("numFilm", listPeop);
-	Stack<Character> temp = new Stack<Character>();
-	if (listPeop.isEmpty()){
-		return null;
-	}else{
-		for(Charachter el:listPeop){
-			temp.push(el);
-		}
+	Person[] c = new Character[N];
+	Person[] listPeop = this.character.values().toArray(new Character[0]);
+	//this.sort("numFilm", listPeop);
+	Stack<Person> temp = new Stack<Person>();
+
+	for(Person el:listPeop){
+	    temp.push(el);
 	}
-	listPeop = null;
-		while(!temp.isEmpty()){
-			listPeop.add(temp.pop());
-		}
-	if (listPeop.lenght <= N){
+
+	if (listPeop.length <= N){
 		return listPeop;
 	}else{
-		for(int i; i < n; i++){
-			c[i] = listPeop.get(i);
+		for(int i = 0; i < N; i++){
+			c[i] = (Person)temp.get(i);
 		}
 		return c;
 	}
