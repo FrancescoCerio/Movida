@@ -309,13 +309,13 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
     @Override
     public Movie[] searchMoviesByTitle(String title) {
         ArrayList<Movie> m = new ArrayList<>();
-	Movie[] listMov = this.movies.values().toArray(new Movie[0]);
-	for (Movie mov:listMov){
-		if (mov.equals(mov)){
-			m.add(mov);
-		    }
-	}
-	return m.toArray(new Movie[0]);
+        Movie[] listMov = this.movies.values().toArray(new Movie[0]);
+        for (Movie mov : listMov){
+            if (mov.getTitle().contains(title)){
+                m.add(getMovieByTitle(mov.getTitle()));
+            }
+        }
+	    return m.toArray(new Movie[0]);
     }
 
     @Override
