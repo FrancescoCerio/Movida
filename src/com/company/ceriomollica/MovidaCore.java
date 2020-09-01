@@ -307,30 +307,37 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
     @Override
     public Movie[] searchMoviesByTitle(String title) {
         ArrayList<Movie> m = new ArrayList<>();
-		Movie[] listMov = this.movies.values().toArray(new Movie[0]);
-		for (Movie mov:listMov){
-			if (mov.compareTo(mov)){
-				m.add(mov);
-		     }
-		}
-		return m.toArray(new Movie[0]);
+	Movie[] listMov = this.movies.values().toArray(new Movie[0]);
+	for (Movie mov:listMov){
+		if (mov.compareTo(mov)){
+			m.add(mov);
+		    }
+	}
+	return m.toArray(new Movie[0]);
     }
 
     @Override
     public Movie[] searchMoviesInYear(Integer year) {
         ArrayList<Movie> m = new ArrayList<>();
-		Movie[] listMov = this.movies.values().toArray(new Movie[0]);
-		for(Movie mov:listMov){
-			if(mov.getYear().equals(year)){
-				m.add(mov);
-			}
+	Movie[] listMov = this.movies.values().toArray(new Movie[0]);
+	for(Movie mov:listMov){
+		if(mov.getYear().equals(year)){				
+			m.add(mov);
 		}
-		return m.toArray(new Movie[0]);
+	}
+	return m.toArray(new Movie[0]);
     }
 
     @Override
     public Movie[] searchMoviesDirectedBy(String name) {
-        return new Movie[0];
+        ArrayList<Movie> m = new ArrayList<>();
+	Movie[] listMov = this.movies.values().toArray(new Movie[0]);
+	for(Movie mov:listMov){
+		if(m.getDirector().compareTo(name){
+			m.add(mov);
+		}
+	}
+	return m.toArray(new Movie[0]);
     }
 
     @Override
@@ -346,28 +353,28 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
     @Override
     public Movie[] searchMostRecentMovies(Integer N) {
         Movie[] m = new Movie[N];
-		Movie[] listMov = this.movies.values().toArray(new Movie[0])
-		Stack<Movie> temp = new Stack<Movie>();
-		listMov.sorter.sort("year", listMov)
-		if (listMov.isEmpty()){
-			return null;
-		}else{
-			for(Movie el:listMov){
-				temp.push(el);
-			}
+	Movie[] listMov = this.movies.values().toArray(new Movie[0])
+	Stack<Movie> temp = new Stack<Movie>();
+	listMov.sorter.sort("year", listMov)
+	if (listMov.isEmpty()){
+		return null;
+	}else{
+		for(Movie el:listMov){
+			temp.push(el);
 		}
-		listMov = null;
-		while(!temp.isEmpty()){
-			listMov.add(temp.pop());
+	}
+	listMov = null;
+	while(!temp.isEmpty()){
+		listMov.add(temp.pop());
+	}
+	    if (listMov.lenght <= N){
+		return listMov;
+	}else{
+		for(int i; i < n; i++){
+			m[i] = listMov.get(i);
 		}
-		if (listMov.lenght <= N){
-			return listMov;
-		}else{
-			for(int i; i < n; i++){
-				m[i] = listMov.get(i);
-			}
-			return m;
-		}
+		return m;
+	}
     }
 
     @Override
