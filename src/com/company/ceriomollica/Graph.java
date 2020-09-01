@@ -68,7 +68,7 @@ public class Graph implements IMovidaCollaborations {
      * @param actor attore di cui individuare il team
      * @return il grafo di tutte le collaborazioni (dirette e indirette) dell'attore passato come parametro
      */
-    //TODO: testare
+    // TESTATO
     @Override
     public Person[] getTeamOf(Person actor) {
 

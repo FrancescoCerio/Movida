@@ -12,7 +12,7 @@ public class HeapSort {
 
     HeapSort (int[] heap) {
         this.heap=heap;
-        len=heap.length;
+        this.len=heap.length;
     }
 
     /**
