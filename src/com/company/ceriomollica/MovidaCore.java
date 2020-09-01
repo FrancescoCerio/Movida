@@ -353,9 +353,9 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
     @Override
     public Movie[] searchMostRecentMovies(Integer N) {
         Movie[] m = new Movie[N];
-	Movie[] listMov = this.movies.values().toArray(new Movie[0])
+	Movie[] listMov = this.movies.values().toArray(new Movie[0]);
 	Stack<Movie> temp = new Stack<Movie>();
-	listMov.sorter.sort("year", listMov)
+	listMov.sorter.sort("year", listMov);
 	if (listMov.isEmpty()){
 		return null;
 	}else{
