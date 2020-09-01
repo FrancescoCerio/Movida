@@ -321,25 +321,25 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
     @Override
     public Movie[] searchMoviesInYear(Integer year) {
         ArrayList<Movie> m = new ArrayList<>();
-	Movie[] listMov = this.movies.values().toArray(new Movie[0]);
-	for(Movie mov:listMov){
-		if(mov.getYear().equals(year)) {
-			m.add(mov);
-		}
-	}
-	return m.toArray(new Movie[0]);
+        Movie[] listMov = this.movies.values().toArray(new Movie[0]);
+        for(Movie mov:listMov){
+            if(mov.getYear().equals(year)) {
+                m.add(mov);
+            }
+        }
+	    return m.toArray(new Movie[0]);
     }
 
     @Override
     public Movie[] searchMoviesDirectedBy(String name) {
         ArrayList<Movie> m = new ArrayList<>();
-	Movie[] listMov = this.movies.values().toArray(new Movie[0]);
-	for(Movie mov:listMov){
-		if(mov.getDirector().equals(name)) {
-			m.add(mov);
-		}
-	}
-	return m.toArray(new Movie[0]);
+        Movie[] listMov = this.movies.values().toArray(new Movie[0]);
+        for(Movie mov:listMov){
+            if(mov.getDirector().getName().equals(name.toLowerCase().trim().replaceAll("\\s", ""))) {
+                m.add(mov);
+            }
+        }
+        return m.toArray(new Movie[0]);
     }
 
     @Override
@@ -355,43 +355,43 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
     @Override
     public Movie[] searchMostRecentMovies(Integer N) {
         Movie[] m = new Movie[N];
-	Movie[] listMov = this.movies.values().toArray(new Movie[0]);
-	Stack<Movie> temp = new Stack<Movie>();
-	//listMov.sort("year", listMov);
+        Movie[] listMov = this.movies.values().toArray(new Movie[0]);
+        Stack<Movie> temp = new Stack<Movie>();
+        //listMov.sort("year", listMov);
 
-	for(Movie el:listMov){
-	    temp.push(el);
-	}
+        for(Movie el:listMov){
+            temp.push(el);
+        }
 
-	if (listMov.length <= N){
-		return listMov;
-	}else{
-		for(int i = 0; i < N; i++){
-			m[i] = (Movie) temp.get(i);
-		}
-		return m;
-	}
+        if (listMov.length <= N){
+            return listMov;
+        }else{
+            for(int i = 0; i < N; i++){
+                m[i] = (Movie) temp.get(i);
+            }
+            return m;
+        }
     }
 
     @Override
     public Person[] searchMostActiveActors(Integer N) {
-	Person[] c = new Person[N];
-	Person[] listPeop = this.character.values().toArray(new Character[0]);
-	//this.sort("numFilm", listPeop);
-	Stack<Person> temp = new Stack<Person>();
+        Person[] c = new Person[N];
+        Person[] listPeop = this.character.values().toArray(new Character[0]);
+        //this.sort("numFilm", listPeop);
+        Stack<Person> temp = new Stack<Person>();
 
-	for(Person el:listPeop){
-	    temp.push(el);
-	}
+        for(Person el:listPeop){
+            temp.push(el);
+        }
 
-	if (listPeop.length <= N){
-		return listPeop;
-	}else{
-		for(int i = 0; i < N; i++){
-			c[i] = (Person)temp.get(i);
-		}
-		return c;
-	}
+        if (listPeop.length <= N){
+            return listPeop;
+        }else{
+            for(int i = 0; i < N; i++){
+                c[i] = (Person)temp.get(i);
+            }
+            return c;
+        }
     }
 
 
