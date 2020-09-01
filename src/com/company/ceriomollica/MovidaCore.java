@@ -23,6 +23,7 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
     //TODO: implementare dizionari per movie e persone da usare come storage interno
 
     MovidaCore(){
+        this.sorter=new SelectionSort();
         this.db_utils = new DBUtils();
         this.movies = new HashConcatenamento<>();
         this.character = new HashConcatenamento<>();
