@@ -15,20 +15,22 @@ public class Graph implements IMovidaCollaborations {
         this.graph = new HashMap<>();
     }
 
-
+    // TESTATA
     // Funzione per creare l'insieme delle collaborazioni nel grafo
     public void populateCollaboration(Movie movie){
         for(Person first_actor : movie.getCast()){
-            this.graph.computeIfAbsent(first_actor, k -> new ArrayList<>());
-
-            // Per ogni persona del cast controllo creo le collaborazioni necessarie
+            //this.graph.computeIfAbsent(first_actor, k -> new ArrayList<>());
+            if (!this.graph.containsKey(first_actor)){//se l'attore non è ancora stato aggiunto
+                this.graph.put(first_actor,new ArrayList<>());//aggiungilo
+            }
+            // Per ogni persona del cast creo le collaborazioni necessarie
             for(Person other_actor : movie.getCast()){
 
                 // Controllo se l'attore preso in considerazione ora sia già presente
-                if(!other_actor.equals(first_actor)){
+                if(!first_actor.equals(other_actor)){
                     ArrayList<Collaboration> collabs = this.graph.get(first_actor);
+
                     Collaboration c = new Collaboration(first_actor, other_actor);
-                    System.out.print("|" + c.getActorA().getName() + " " + c.getActorB().getName() + "|");
                     // Controllo se la collaborazione è già presente
                     if(collabs.contains(c)){
                         // Nel caso fosse vero prendo il suo indice e aggiungo il movie corrente alla lista di movies
@@ -41,12 +43,11 @@ public class Graph implements IMovidaCollaborations {
                     }
                 }
             }
-            System.out.println(" ");
         }
 
     }
 
-    //TODO: da testare, riporta errore di nullPointer ma non capisco perchè
+    // TESTATA
     @Override
     public Person[] getDirectCollaboratorsOf(Person actor) {
         ArrayList<Collaboration> collabs = this.graph.get(actor);
@@ -72,6 +73,29 @@ public class Graph implements IMovidaCollaborations {
     public Person[] getTeamOf(Person actor) {
 
         // Ricerco la lista degli attori diretti che collaborano con l'attore passato come parametro
+        Person[] direct_collabs = getDirectCollaboratorsOf(actor);
+        ArrayList<Person> actor_list = new ArrayList<>();
+
+        for(Person p : direct_collabs){
+            Person[] indirect_collabs = getDirectCollaboratorsOf(p);
+            actor_list.add(p);
+            for(Person q : indirect_collabs){
+                if(!actor_list.contains(q)){
+                    System.out.println(q);
+                    actor_list.add(q);
+                }
+            }
+        }
+        Person[] total_collabs = new Person[actor_list.size()];
+        int i = 0;
+        for(Person a : actor_list){
+            total_collabs[i] = a;
+            i++;
+        }
+
+        return total_collabs;
+
+        /*
         ArrayList<Collaboration> direct_collabs = this.graph.get(actor);
         ArrayList<ArrayList<Collaboration>> all_collabs = new ArrayList<>();
         all_collabs.add(direct_collabs);
@@ -91,6 +115,7 @@ public class Graph implements IMovidaCollaborations {
         }
 
         return team;
+         */
     }
 
     @Override

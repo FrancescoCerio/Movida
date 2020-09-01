@@ -30,5 +30,21 @@ public class Person {
 	public String getName(){
 		return this.name;
 	}
-	
+
+	public String nameNormalize(){
+		return this.name.toLowerCase().trim().replaceAll("\\s","");
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		Person p=(Person) obj;
+		return this.nameNormalize().equals(p.nameNormalize());
+	}
+
+
+	@Override
+	public int hashCode() {
+		return this.nameNormalize().hashCode();
+	}
+
 }
