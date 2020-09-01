@@ -306,12 +306,26 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
 
     @Override
     public Movie[] searchMoviesByTitle(String title) {
-        return new Movie[0];
+        ArrayList<Movie> m = new ArrayList<>();
+		Movie[] listMov = this.movies.values().toArray(new Movie[0]);
+		for (Movie mov:listMov){
+			if (mov.compareTo(mov)){
+				m.add(mov);
+		     }
+		}
+		return m.toArray(new Movie[0]);
     }
 
     @Override
     public Movie[] searchMoviesInYear(Integer year) {
-        return new Movie[0];
+        ArrayList<Movie> m = new ArrayList<>();
+		Movie[] listMov = this.movies.values().toArray(new Movie[0]);
+		for(Movie mov:listMov){
+			if(mov.getYear().equals(year)){
+				m.add(mov);
+			}
+		}
+		return m.toArray(new Movie[0]);
     }
 
     @Override
@@ -331,7 +345,29 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
 
     @Override
     public Movie[] searchMostRecentMovies(Integer N) {
-        return new Movie[0];
+        Movie[] m = new Movie[N];
+		Movie[] listMov = this.movies.values().toArray(new Movie[0])
+		Stack<Movie> temp = new Stack<Movie>();
+		listMov.sorter.sort("year", listMov)
+		if (listMov.isEmpty()){
+			return null;
+		}else{
+			for(Movie el:listMov){
+				temp.push(el);
+			}
+		}
+		listMov = null;
+		while(!temp.isEmpty()){
+			listMov.add(temp.pop());
+		}
+		if (listMov.lenght <= N){
+			return listMov;
+		}else{
+			for(int i; i < n; i++){
+				m[i] = listMov.get(i);
+			}
+			return m;
+		}
     }
 
     @Override
