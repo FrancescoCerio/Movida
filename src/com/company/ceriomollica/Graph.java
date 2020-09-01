@@ -74,46 +74,48 @@ public class Graph implements IMovidaCollaborations {
 
         // Ricerco la lista degli attori diretti che collaborano con l'attore passato come parametro
         Person[] direct_collabs = getDirectCollaboratorsOf(actor);
-        ArrayList<Person> actor_list = new ArrayList<>(Arrays.asList(direct_collabs));
+        ArrayList<Person> actor_list = new ArrayList<>();
+        ArrayDeque<Person> actor_to_visit = new ArrayDeque<>();
+        ArrayList<Person> visited = new ArrayList<>(); // lista di attori già visitati
+        actor_to_visit.add(actor);
+        // Itero nella coda finchè non è vuota e per ogni attore presente ricerco i suoi diretti collaboratori,
+        // li inserisco nella coda se non sono già presenti e infine li aggiungo alla lista di attori che fanno
+        // parte del team
 
-        for(Person p : direct_collabs){
-            Person[] indirect_collabs = getDirectCollaboratorsOf(p);
-            for(Person q : indirect_collabs){
-                if(!actor_list.contains(q)){
-                    actor_list.add(q);
+        while(!actor_to_visit.isEmpty()){
+            Person p = actor_to_visit.poll();
+            Person[] indirect_collabs = getDirectCollaboratorsOf(p); // Ottengo la lista di diretti collaboratori dell'attore corrente
+
+            // Per ogni attore presente nella lista dei diretti collaboratori effettuo delle operazioni di controllo
+            // utilizzando le tre liste sopra definite:
+            //  - Nella lista actor_to_visit salvo gli attori da visitare e controllo se ci sono doppioni, in caso positivo non li aggiungo
+            //  - Nella lista visited salvo i nomi degli attori già visitati in modo da non controllare due volte lo stesso attore
+            //  - Nella lista actor_list salvo la lista completa del team
+            for(Person q: indirect_collabs) {
+                if(!visited.contains(q)){
+                    if (!actor_to_visit.contains(q)) {
+                        actor_to_visit.add(q);
+                        if (!actor_list.contains(q)) {
+                            actor_list.add(q);
+                        }
+                    }
+                    visited.add(q);
                 }
             }
         }
+
+        // Definisco l'array di attori che compongono il team
         Person[] total_collabs = new Person[actor_list.size()];
-        int i = 0;
-        for(Person a : actor_list){
-            total_collabs[i] = a;
-            i++;
-        }
-
-        return total_collabs;
-
-        /*
-        ArrayList<Collaboration> direct_collabs = this.graph.get(actor);
-        ArrayList<ArrayList<Collaboration>> all_collabs = new ArrayList<>();
-        all_collabs.add(direct_collabs);
-
-        for(Collaboration co : direct_collabs){
-            ArrayList<Collaboration> indirect_collabs = this.graph.get(co.getActorB());
-            all_collabs.add(indirect_collabs);
-        }
-        Person[] team = new Person[all_collabs.size()];
-        team[0] = actor;
         int i = 1;
-        for(ArrayList<Collaboration> c : all_collabs){
-            for(Collaboration tmp : c){
-                team[i] = tmp.getActorB();
+        total_collabs[0] = actor_list.get(actor_list.indexOf(actor));
+        for(Person a : actor_list){
+            if(!a.equals(actor)){
+                total_collabs[i] = a;
                 i++;
             }
         }
 
-        return team;
-         */
+        return total_collabs;
     }
 
     @Override

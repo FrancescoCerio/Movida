@@ -23,7 +23,7 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
     //TODO: definire interfaccia per gli algoritmi di ordinamento
 
     MovidaCore(){
-        this.sorter=new SelectionSort();
+        //this.sorter=new SelectionSort();
         this.db_utils = new DBUtils();
         this.movies = new HashConcatenamento<>();
         this.character = new HashConcatenamento<>();
@@ -93,7 +93,7 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
          }
 
          // test
-         Person p = new Person("bruce willis");
+         Person p = new Person("Katharine Towne");
          for(Person q : getTeamOf(p)){
              System.out.println(q.getName());
          }
