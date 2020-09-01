@@ -375,7 +375,7 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
 
     @Override
     public Person[] searchMostActiveActors(Integer N) {
-	Person[] c = new Character[N];
+	Person[] c = new Person[N];
 	Person[] listPeop = this.character.values().toArray(new Character[0]);
 	//this.sort("numFilm", listPeop);
 	Stack<Person> temp = new Stack<Person>();
