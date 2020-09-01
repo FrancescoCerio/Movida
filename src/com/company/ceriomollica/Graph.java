@@ -74,14 +74,12 @@ public class Graph implements IMovidaCollaborations {
 
         // Ricerco la lista degli attori diretti che collaborano con l'attore passato come parametro
         Person[] direct_collabs = getDirectCollaboratorsOf(actor);
-        ArrayList<Person> actor_list = new ArrayList<>();
+        ArrayList<Person> actor_list = new ArrayList<>(Arrays.asList(direct_collabs));
 
         for(Person p : direct_collabs){
             Person[] indirect_collabs = getDirectCollaboratorsOf(p);
-            actor_list.add(p);
             for(Person q : indirect_collabs){
                 if(!actor_list.contains(q)){
-                    System.out.println(q);
                     actor_list.add(q);
                 }
             }

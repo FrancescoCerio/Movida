@@ -91,7 +91,8 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
              this.collaboration.populateCollaboration(m);
          }
 
-         Person p = new Person("Robert de niro");
+         // test
+         Person p = new Person("bruce willis");
          for(Person q : getTeamOf(p)){
              System.out.println(q.getName());
          }
