@@ -20,7 +20,7 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
     private MyDictionary<String, Movie> movies;
     private Graph collaboration;
     private MyDictionary<String, Character> character;
-    //TODO: implementare dizionari per movie e persone da usare come storage interno
+    //TODO: definire interfaccia per gli algoritmi di ordinamento
 
     MovidaCore(){
         this.sorter=new SelectionSort();
