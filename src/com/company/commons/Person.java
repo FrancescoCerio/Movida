@@ -7,6 +7,9 @@
  * 
 */
 package com.company.commons;
+
+import com.company.ceriomollica.CustomComparable;
+
 /**
  * Classe usata per rappresentare una persona, attore o regista,
  * nell'applicazione Movida.
@@ -19,7 +22,7 @@ package com.company.commons;
  * La classe pu� essere modicata o estesa ma deve implementare il metodo getName().
  * 
  */
-public class Person {
+public class Person implements CustomComparable {
 
 	private String name;
 	
@@ -37,8 +40,7 @@ public class Person {
 
 	@Override
 	public boolean equals(Object obj) {
-		Person p=(Person) obj;
-		return this.nameNormalize().equals(p.nameNormalize());
+		return this.nameNormalize().equals(((Person) obj).nameNormalize());
 	}
 
 
@@ -47,4 +49,13 @@ public class Person {
 		return this.nameNormalize().hashCode();
 	}
 
+	@Override
+	public int customCompare(String param, CustomComparable c) {
+		return this.nameNormalize().compareTo(((Person) c).nameNormalize());
+	}
+
+	@Override
+	public int compareTo(Object o) {
+		return this.nameNormalize().compareTo(((Person) o).nameNormalize());
+	}
 }

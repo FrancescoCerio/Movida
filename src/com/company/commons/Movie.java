@@ -7,6 +7,9 @@
  * 
 */
 package com.company.commons;
+
+import com.company.ceriomollica.CustomComparable;
+
 /**
  * Classe usata per rappresentare un film
  * nell'applicazione Movida.
@@ -18,7 +21,7 @@ package com.company.commons;
  * per recupare le informazioni caratterizzanti di un film.
  * 
  */
-public class Movie {
+public class Movie implements CustomComparable {
 	
 	private String title;
 	private Integer year;
@@ -63,6 +66,19 @@ public class Movie {
 		}
 		return actors.toString().substring(0, actors.toString().length() - 2);
 	}
-	
-	
+
+	// Funzione ausiliaria che utilizzo per il confronto sui parametri di "year" o "votes"
+	// Utile per le funzioni dichiarate nell'interfaccia IMovidaSearch
+	@Override
+	public int customCompare(String param, CustomComparable c) {
+		if(param.equals("votes"))
+			return this.getVotes().compareTo(((Movie) c).getVotes());
+		else
+			return this.getYear().compareTo(((Movie) c).getYear());
+	}
+
+	@Override
+	public int compareTo(Object o) {
+		return this.getTitle().trim().toLowerCase().replaceAll("\\s", "").compareTo(((Movie) o).getTitle().trim().toLowerCase().replaceAll("\\s", ""));
+	}
 }

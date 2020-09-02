@@ -21,11 +21,10 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
     private MyDictionary<String, Movie> movies;
     private Graph collaboration;
     private MyDictionary<String, Character> character;
-    //private Sorty sorts;
-    //TODO: definire interfaccia per gli algoritmi di ordinamento
+    private Sorty sorts;
 
     MovidaCore(){
-        //this.sorts = new SelectionSort();
+        this.sorts = new SelectionSort();
         this.db_utils = new DBUtils();
         this.movies = new HashConcatenamento<>();
         this.character = new HashConcatenamento<>();
@@ -344,7 +343,23 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
 
     @Override
     public Movie[] searchMoviesStarredBy(String name) {
-        return new Movie[0];
+        // Creo un array di Movie con dimensione pari al numero di film a cui l'attore ha preso parte
+        Movie[] m = new Movie[this.character.search(name).getNum_movies()];
+        // Ottengo tutti i film presenti nel DB
+        Movie[] am = this.movies.values().toArray(new Movie[0]);
+
+        // Controllo per ogni film presente in DB se il nome dell'attore è presente nel cast e se presente
+        // aggiungo il film al vettore dei film da ritornare
+        int i;
+        for(i = 0; i < am.length; i++){
+            Person[] tmp_cast = am[i].getCast();
+            for(Person tmp_act : tmp_cast){
+                if (tmp_act.compareTo(new Person(name)) == 0){
+                    m[i] = am[i];
+                }
+            }
+        }
+        return m;
     }
 
     @Override
@@ -357,7 +372,7 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
         Movie[] m = new Movie[N];
         Movie[] listMov = this.movies.values().toArray(new Movie[0]);
         Stack<Movie> temp = new Stack<Movie>();
-        //listMov.sort("year", listMov);
+        this.sorts.sort("year", listMov);
 
         for(Movie el:listMov){
             temp.push(el);
@@ -376,11 +391,11 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
     @Override
     public Person[] searchMostActiveActors(Integer N) {
         Person[] c = new Person[N];
-        Person[] listPeop = this.character.values().toArray(new Character[0]);
-        //this.sort("numFilm", listPeop);
-        Stack<Person> temp = new Stack<Person>();
+        Character[] listPeop = this.character.values().toArray(new Character[0]);
+        this.sorts.sort("numFilm", listPeop);
+        Stack<Character> temp = new Stack<Character>();
 
-        for(Person el:listPeop){
+        for(Character el : listPeop){
             temp.push(el);
         }
 

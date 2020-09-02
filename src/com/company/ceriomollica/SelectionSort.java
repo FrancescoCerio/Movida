@@ -4,26 +4,34 @@
  */
 
 package com.company.ceriomollica;
-public class SelectionSort {
 
-    public void selectionSort(int [] array) {
+import java.lang.reflect.Array;
+
+public class SelectionSort implements Sorty{
+
+    public void selectionSort(String param, CustomComparable[] array) {
         for(int i = 0; i < array.length-1; i++) {
             int minimo = i; //Partiamo dall' i-esimo elemento
             for(int j = i+1; j < array.length; j++) {
                 //Qui avviene la selezione, ogni volta
                 //che nell' iterazione troviamo un elemento piú piccolo di minimo
                 //facciamo puntare minimo all' elemento trovato
-                if(array[minimo]>array[j]) {
+                if(array[minimo].customCompare(param, array[j]) > 0) {
                     minimo = j;
                 }
             }
-            //Se minimo e diverso dall' elemento di partenza
-            //allora avviene lo scambio
+            // Se minimo è diverso dall' elemento di partenza
+            // allora avviene lo scambio
             if(minimo!=i) {
-                int k = array[minimo];
+                CustomComparable k = array[minimo];
                 array[minimo]= array[i];
                 array[i] = k;
             }
         }
+    }
+
+    @Override
+    public void sort(String param, CustomComparable[] c) {
+        this.selectionSort(param, c);
     }
 }
