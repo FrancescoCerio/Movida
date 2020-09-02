@@ -35,7 +35,9 @@ public class Character extends Person implements CustomComparable{
     public int customCompare(String param, CustomComparable c) {
         if(param.equals("numFilm"))
             return this.getNum_movies().compareTo(((Character) c).getNum_movies());
-        return super.customCompare(param, c);
+        if(param.equals("name"))
+            return this.getName().compareTo(((Character) c).getName());
+        return 0;
     }
 
     @Override

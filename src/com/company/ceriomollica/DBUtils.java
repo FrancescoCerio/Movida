@@ -61,7 +61,7 @@ public class DBUtils {
     public Movie createRecord(String[] Film){
         String title = Film[0].trim();
         Integer year = Integer.parseInt(Film[1].trim());
-        Person director = new Person(Film[2].trim());
+        Person director = new Person(Film[2]);
         String[] castMov = Film[3].trim().split(",");
         Person[] cast = this.getCastNames(castMov);
         Integer votes = Integer.parseInt(Film[4].trim());

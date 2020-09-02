@@ -51,7 +51,9 @@ public class Person implements CustomComparable {
 
 	@Override
 	public int customCompare(String param, CustomComparable c) {
-		return this.nameNormalize().compareTo(((Person) c).nameNormalize());
+		if(param.equals("name"))
+			return this.getName().compareTo(((Person) c).getName());
+		else return 0;
 	}
 
 	@Override

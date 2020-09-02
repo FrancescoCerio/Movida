@@ -19,10 +19,8 @@ public class Graph implements IMovidaCollaborations {
     // Funzione per creare l'insieme delle collaborazioni nel grafo
     public void populateCollaboration(Movie movie){
         for(Person first_actor : movie.getCast()){
-            //this.graph.computeIfAbsent(first_actor, k -> new ArrayList<>());
-            if (!this.graph.containsKey(first_actor)){//se l'attore non è ancora stato aggiunto
-                this.graph.put(first_actor,new ArrayList<>());//aggiungilo
-            }
+            this.graph.computeIfAbsent(first_actor, k -> new ArrayList<>());
+
             // Per ogni persona del cast creo le collaborazioni necessarie
             for(Person other_actor : movie.getCast()){
 

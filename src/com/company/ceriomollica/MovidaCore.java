@@ -65,7 +65,7 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
              // Popolo il dizionario dei Character per ogni persona presente all'interno di un film
 
              // Director
-             String director = film.getDirector().getName().toLowerCase().replaceAll("\\s", "");
+             String director = film.getDirector().getName().trim();
              // Cerco se il Director è già presente nel Dizionario dei Character
              // Se non dovesse essere presente lo inserisco creando un nuovo oggetto inizializzando a zero il numero di film
              Character character_director = this.character.search(director);
@@ -75,7 +75,7 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
 
              // Cast
              for(Person p : film.getCast()){
-                 String current_actor = p.getName().trim().toLowerCase().replaceAll("\\s", "");
+                 String current_actor = p.getName();
                  Character actor = this.character.search(current_actor);
 
                  // Vedo se l'attore è presente nel dizionario e incremento il numero di film
@@ -94,11 +94,12 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
          }
 
          // test
-         Person p = new Person("al pacino");
-         for(Person q : getTeamOf(p)){
-             System.out.println(q.getName());
-         }
 
+         Movie[] q = searchMostVotedMovies(3);
+
+         for(Movie a: q){
+             System.out.println(a.getTitle());
+         }
 
      }
 
@@ -168,7 +169,7 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
      *
      * @return numero di film totali
      */
-    //TODO: testare, dovrebbe essere giusta
+    // TESTATA
     public int countMovies(){
         return this.movies.values().toArray().length;
     }
@@ -178,6 +179,7 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
      *
      * @return numero di persone totali
      */
+    // TESTATA
     public int countPeople(){
         return this.character.values().size();
     }
@@ -209,6 +211,7 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
      * @param title il titolo del film
      * @return record associato ad un film
      */
+    // TESTATA
     public Movie getMovieByTitle(String title){
         return this.movies.search(title);
     }
@@ -219,7 +222,7 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
      * @param name il nome della persona
      * @return record associato ad una persona
      */
-
+    // TESTATA
     public Person getPersonByName(String name){
         return this.character.search(name);
     }
@@ -239,6 +242,7 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
      *
      * @return array di persone
      */
+    // TESTATA
     public Person[] getAllPeople(){
         return this.character.values().toArray(new Person[0]);
     }
@@ -250,6 +254,7 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
      * @param actor attore di cui cercare i collaboratori diretti
      * @return record associato all'array di Person
      */
+    // TESTATA
     @Override
     public Person[] getDirectCollaboratorsOf(Person actor) {
         return this.collaboration.getDirectCollaboratorsOf(actor);
@@ -262,13 +267,14 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
      * @param actor attore di cui individuare il team
      * @return
      */
+    // TESTATA
     @Override
     public Person[] getTeamOf(Person actor) {
         return this.collaboration.getTeamOf(actor);
     }
 
     /**
-     * TODO: vedere bene implementazione
+     * TODO: implementare
      * @param actor attore di cui individuare il team
      * @return
      */
@@ -305,18 +311,21 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
         return value;
     }
 
+    // TESTATO
     @Override
     public Movie[] searchMoviesByTitle(String title) {
         ArrayList<Movie> m = new ArrayList<>();
         Movie[] listMov = this.movies.values().toArray(new Movie[0]);
+
         for (Movie mov : listMov){
-            if (mov.getTitle().contains(title)){
-                m.add(getMovieByTitle(mov.getTitle()));
+            if (mov.getTitle().toLowerCase().replaceAll("\\s", "").contains(title.toLowerCase().trim().replaceAll("\\s", ""))){
+                m.add(getMovieByTitle(mov.getTitle().trim().toLowerCase().replaceAll("\\s", "")));
             }
         }
-	    return m.toArray(new Movie[0]);
+        return m.toArray(new Movie[0]);
     }
 
+    // TESTATO
     @Override
     public Movie[] searchMoviesInYear(Integer year) {
         ArrayList<Movie> m = new ArrayList<>();
@@ -329,12 +338,13 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
 	    return m.toArray(new Movie[0]);
     }
 
+    // TESTATA
     @Override
     public Movie[] searchMoviesDirectedBy(String name) {
         ArrayList<Movie> m = new ArrayList<>();
         Movie[] listMov = this.movies.values().toArray(new Movie[0]);
         for(Movie mov:listMov){
-            if(mov.getDirector().getName().equals(name.toLowerCase().trim().replaceAll("\\s", ""))) {
+            if(mov.getDirector().getName().toLowerCase().replaceAll("\\s", "").equals(name.toLowerCase().trim().replaceAll("\\s", ""))) {
                 m.add(mov);
             }
         }
@@ -362,6 +372,7 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
         return m;
     }
 
+    // TODO: CONTROLLARE ORDINAMENTO DEI VALORI, NON RITORNA IL PIù GRANDE
     @Override
     public Movie[] searchMostVotedMovies(Integer N) {
         Movie[] m = new Movie[N];
@@ -382,6 +393,8 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
         return getMovies(N, m, listMov, temp);
     }
 
+    // Funzione ausiliaria per le funzioni di ricerca searchMostVotedMovies e searchMostRecentMovies
+    // ridcue la ridondanza di codice
     private Movie[] getMovies(Integer N, Movie[] m, Movie[] listMov, Stack<Movie> temp) {
         for(Movie el:listMov){
             temp.push(el);
@@ -391,12 +404,13 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
             return listMov;
         }else{
             for(int i = 0; i < N; i++){
-                m[i] = (Movie) temp.get(i);
+                m[i] = temp.get(i);
             }
             return m;
         }
     }
 
+    // TESTATA
     @Override
     public Person[] searchMostActiveActors(Integer N) {
         Person[] c = new Person[N];
@@ -412,7 +426,7 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
             return listPeop;
         }else{
             for(int i = 0; i < N; i++){
-                c[i] = (Person)temp.get(i);
+                c[i] = temp.get(i);
             }
             return c;
         }
@@ -420,7 +434,7 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
 
 
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         MovidaCore m = new MovidaCore();
         m.loadFromFile(new File("/Users/francesco/IdeaProjects/Movida/src/com/company/commons/esempio-formato-dati.txt"));
         File file = new File("test.txt");
