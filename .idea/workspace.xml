@@ -2,13 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="839261a5-6c7a-4cf3-8873-f732e3941ede" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/com/company/ceriomollica/CustomComparable.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/company/ceriomollica/Sorty.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/ceriomollica/Character.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/ceriomollica/Character.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/company/ceriomollica/MovidaCore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/ceriomollica/MovidaCore.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/ceriomollica/SelectionSort.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/ceriomollica/SelectionSort.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/commons/Movie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/commons/Movie.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/commons/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/commons/Person.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,6 +33,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="extract.method.default.visibility" value="private" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.15" />
@@ -92,7 +89,8 @@
       <workItem from="1598863027001" duration="5098000" />
       <workItem from="1598952896260" duration="436000" />
       <workItem from="1598953377644" duration="6132000" />
-      <workItem from="1599034203627" duration="6835000" />
+      <workItem from="1599034203627" duration="7037000" />
+      <workItem from="1599064120201" duration="1095000" />
     </task>
     <servers />
   </component>
@@ -104,10 +102,10 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="224" y="73" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1440.900@0.0.1440.900" timestamp="1598432471965" />
-    <state x="533" y="166" key="#com.intellij.ide.util.MemberChooser" timestamp="1599041642002">
+    <state x="533" y="166" key="#com.intellij.ide.util.MemberChooser" timestamp="1599064515521">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="533" y="166" key="#com.intellij.ide.util.MemberChooser/0.0.1440.900@0.0.1440.900" timestamp="1599041642002" />
+    <state x="533" y="166" key="#com.intellij.ide.util.MemberChooser/0.0.1440.900@0.0.1440.900" timestamp="1599064515521" />
     <state x="458" y="204" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1599034350608">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
@@ -156,10 +154,14 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state width="500" height="400" key="SwitcherDM/0.0.1440.900@0.0.1440.900" timestamp="1598774601592" />
-    <state x="397" y="282" key="com.intellij.ide.util.TipDialog" timestamp="1599034228682">
+    <state x="397" y="282" key="com.intellij.ide.util.TipDialog" timestamp="1599064124513">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="397" y="282" key="com.intellij.ide.util.TipDialog/0.0.1440.900@0.0.1440.900" timestamp="1599034228682" />
+    <state x="397" y="282" key="com.intellij.ide.util.TipDialog/0.0.1440.900@0.0.1440.900" timestamp="1599064124513" />
+    <state x="458" y="220" key="extract.method.dialog" timestamp="1599065203062">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="458" y="220" key="extract.method.dialog/0.0.1440.900@0.0.1440.900" timestamp="1599065203062" />
     <state x="385" y="196" width="670" height="676" key="search.everywhere.popup" timestamp="1598867870854">
       <screen x="0" y="0" width="1440" height="900" />
     </state>

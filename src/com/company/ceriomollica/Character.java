@@ -10,7 +10,7 @@ import com.company.commons.Person;
  * a cui un personaggio (Character) ha preso parte.
  */
 
-public class Character extends Person {
+public class Character extends Person implements CustomComparable{
 
     private Integer num_movies;
 
@@ -29,5 +29,17 @@ public class Character extends Person {
 
     public void decMovie(){
         this.num_movies--;
+    }
+
+    @Override
+    public int customCompare(String param, CustomComparable c) {
+        if(param.equals("numFilm"))
+            return this.getNum_movies().compareTo(((Character) c).getNum_movies());
+        return super.customCompare(param, c);
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        return super.compareTo(o);
     }
 }

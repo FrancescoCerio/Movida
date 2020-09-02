@@ -369,18 +369,7 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
         Stack<Movie> temp = new Stack<Movie>();
         //listMov.sort("votes", listMov);
 
-        for(Movie el:listMov){
-            temp.push(el);
-        }
-
-        if (listMov.length <= N){
-            return listMov;
-        }else{
-            for(int i = 0; i < N; i++){
-                m[i] = (Movie) temp.get(i);
-            }
-            return m;
-        }
+        return getMovies(N, m, listMov, temp);
     }
 
     @Override
@@ -390,6 +379,10 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
         Stack<Movie> temp = new Stack<Movie>();
         this.sorts.sort("year", listMov);
 
+        return getMovies(N, m, listMov, temp);
+    }
+
+    private Movie[] getMovies(Integer N, Movie[] m, Movie[] listMov, Stack<Movie> temp) {
         for(Movie el:listMov){
             temp.push(el);
         }
