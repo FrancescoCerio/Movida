@@ -94,7 +94,7 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
          }
 
          // test
-         Person p = new Person("Katharine Towne");
+         Person p = new Person("al pacino");
          for(Person q : getTeamOf(p)){
              System.out.println(q.getName());
          }
@@ -367,7 +367,7 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
         Movie[] m = new Movie[N];
         Movie[] listMov = this.movies.values().toArray(new Movie[0]);
         Stack<Movie> temp = new Stack<Movie>();
-        //listMov.sort("votes", listMov);
+        this.sorts.sort("votes", listMov);
 
         return getMovies(N, m, listMov, temp);
     }
