@@ -5,79 +5,58 @@
 
 package com.company.ceriomollica;
 
-public class HeapSort {
+public class HeapSort implements Sorty {
 
-    private int[] heap;
-    private int len;
-
-    HeapSort (int[] heap) {
-        this.heap=heap;
-        this.len=heap.length;
-    }
-
-    /**
-     * This is an in-place sort and will modify the original array passed in the constructor.
-     */
-    void sort () {
-        int n=len;
-        heapify();
-
-        for (int i=0;i<n;i++) {
-            int temp=extract();
-            heap[len]=temp; // Since the heap shrinks by 1 each iteration, we can put each extracted element at the end of the effective heap
+    public void sort(String type, CustomComparable comp[]){
+        CustomComparable[] c = new CustomComparable[comp.length+1];
+        int i = 0;
+        while(i < comp.length){
+            c[i+1] = comp[i];
+            i++;
+        }
+        this.heapSort(c, type);
+        
+        i = 0;
+        while (i < c.length){
+            comp[i-1] = c[i];
+            i++;
         }
     }
 
-    private int extract () {
-        int top = heap[0];
-        heap[0]=heap[len-1];
-        len--;
-        siftDown(0);
-        return top;
+    private static void heapify(CustomComparable comp[], int n, int i, String type){
+        if(i > n) return;
+        heapify(comp, n, 2*i, type);
+        heapify(comp, n, 2*i+1, type);
+        fixheap(comp, n, i, type);
     }
 
-    /**
-     * Uses Floyd's method for heap building.
-     */
-    private void heapify () {
-        for (int i=len-1;i>=0;i--) {
-            siftDown(i);
+    private static void fixheap(CustomComparable comp[], int a, int i, String type){
+        int max = 2*i;
+        if(2*i  > a) return;
+        if(2*i +1 <= a && comp[2*i].customCompare(type,comp[2*i +1]) < 0) max = 2*i+1;
+        if(comp[i].customCompare(type,comp[max]) < 0){
+            CustomComparable temp = comp[max];
+            comp[max] = comp[i];
+            comp[i] = temp;
+            fixheap(comp, a, max,type);
         }
     }
 
-    private void siftDown (int i) {
-        while (!isLeaf(i) && !biggerThanChildren(i)) {
-            i=swap(i, maxChild(i));
+    private static void deleteMax(CustomComparable comp[], int a, String type) {
+        if (a <= 0) return;
+        comp[1] = comp[a];
+        a--;
+        fixheap(comp, a, 1, type);
+    }
+    public static void heapSort(CustomComparable comp[], String type) {
+        heapify(comp, comp.length - 1, 1, type);
+        int c = (comp.length - 1);
+        while(c > 0){
+            CustomComparable k = comp[1];
+            deleteMax(comp, c, type);
+            comp[c] = k;
+            c--;
         }
     }
 
-    private int maxChild (int i) {
-        if (right(i)>=len) return left(i);
-        if (heap[left(i)]>=heap[right(i)]) return left(i);
-        return right(i);
-    }
-
-    private int swap (int x, int y) {
-        int temp=heap[x];
-        heap[x]=heap[y];
-        heap[y]=temp;
-        return y;
-    }
-
-    private boolean biggerThanChildren (int i) {
-        if (right(i)>=len) return heap[i]>=heap[left(i)];
-        return heap[i]>=heap[left(i)] && heap[i]>=heap[right(i)];
-    }
-
-    private int left (int i) {
-        return 2*i+1;
-    }
-
-    private int right (int i) {
-        return 2*i+2;
-    }
-
-    private boolean isLeaf (int i) {
-        return left(i)>=len;
-    }
 }
