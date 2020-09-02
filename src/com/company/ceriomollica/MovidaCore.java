@@ -364,7 +364,23 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
 
     @Override
     public Movie[] searchMostVotedMovies(Integer N) {
-        return new Movie[0];
+        Movie[] m = new Movie[N];
+        Movie[] listMov = this.movies.values().toArray(new Movie[0]);
+        Stack<Movie> temp = new Stack<Movie>();
+        //listMov.sort("votes", listMov);
+
+        for(Movie el:listMov){
+            temp.push(el);
+        }
+
+        if (listMov.length <= N){
+            return listMov;
+        }else{
+            for(int i = 0; i < N; i++){
+                m[i] = (Movie) temp.get(i);
+            }
+            return m;
+        }
     }
 
     @Override
