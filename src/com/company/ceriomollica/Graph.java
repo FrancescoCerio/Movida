@@ -1,3 +1,11 @@
+/*
+ * Copyright (C) 2020 - Francesco Cerio, Francesco Mollica
+ *
+ * Progetto Movida.
+ * Corso di Algoritmi e Strutture Dati
+ * Laurea in Informatica, UniBO, a.a. 2019/2020
+ *
+ */
 package com.company.ceriomollica;
 
 import com.company.commons.Collaboration;
@@ -15,7 +23,6 @@ public class Graph implements IMovidaCollaborations {
         this.graph = new HashMap<>();
     }
 
-    // TESTATA
     // Funzione per creare l'insieme delle collaborazioni nel grafo
     public void populateCollaboration(Movie movie){
         for(Person first_actor : movie.getCast()){
@@ -45,7 +52,6 @@ public class Graph implements IMovidaCollaborations {
 
     }
 
-    // TESTATA
     @Override
     public Person[] getDirectCollaboratorsOf(Person actor) {
         ArrayList<Collaboration> collabs = this.graph.get(actor);

@@ -1,4 +1,13 @@
 /*
+ * Copyright (C) 2020 - Francesco Cerio, Francesco Mollica
+ *
+ * Progetto Movida.
+ * Corso di Algoritmi e Strutture Dati
+ * Laurea in Informatica, UniBO, a.a. 2019/2020
+ *
+ */
+
+/**
  * Classe ausiliaria definita per l'algoritmo di ordinamento:
  *  SELECTION SORT
  */

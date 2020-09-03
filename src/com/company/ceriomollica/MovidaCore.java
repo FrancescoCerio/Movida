@@ -21,7 +21,7 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
     private Sorty sorts;
 
     MovidaCore(){
-        this.sorts = new SelectionSort();
+        this.sorts = new HeapSort();
         this.db_utils = new DBUtils();
         this.movies = new HashConcatenamento<>();
         this.character = new HashConcatenamento<>();
@@ -102,10 +102,9 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
      *
      * @throws MovidaFileException in caso di errore di salvataggio
      */
-    // Testata, sembra funzionare tutto
+    // Testata
     public void saveToFile(File f){
         try {
-
             // Controllo i permessi di scrittura
             if(f.canWrite()){
                 // Uso un BufferedWriter passando un FileWriter con append settato a false
@@ -278,11 +277,11 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
         boolean value = false;
         if(a == SortingAlgorithm.HeapSort){
             value = true;
-            //TODO: impostare algoritmo di ordinamento heapsort
+            this.sorts = new HeapSort();
         }
         if(a == SortingAlgorithm.SelectionSort){
             value = true;
-            //TODO: impostare algoritmo di ordinamento selectionsort
+            this.sorts = new SelectionSort();
         }
         return value;
     }
@@ -438,7 +437,7 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
         MovidaCore m = new MovidaCore();
         m.loadFromFile(new File("/Users/francesco/IdeaProjects/Movida/src/com/company/commons/esempio-formato-dati.txt"));
 
-        Movie[] c = m.searchMoviesStarredBy("Robert    DE nIro");
+        Movie[] c = m.searchMoviesStarredBy("selaward");
         for(Movie a : c){
             System.out.println(a.getTitle());
         }
