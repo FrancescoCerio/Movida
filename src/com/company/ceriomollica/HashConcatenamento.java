@@ -1,28 +1,30 @@
 package com.company.ceriomollica;
 
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Objects;
 
-// Class to represent entire hash table
-class HashConcatenamento<K, V> implements MyDictionary<K,V>{
-    // bucketArray is used to store array of chains
+/**
+ * Classe definita per implmentare la funzione di dizionario HashConcatenamento.
+ * Implementa l'interfaccia MyDictionary usata per gli algoritmi di dizionario.
+ *
+ * @param <K> chiave della chiave per ogni nodo presente nel dizionario
+ * @param <V> valore di ogni chiave presente
+ */
+public class HashConcatenamento<K, V> implements MyDictionary<K,V>{
+    // bucketArray utilizzata per mantenere in memoria la lista di HashNode
     private ArrayList<HashNode<K, V>> bucketArray;
 
-    // Current capacity of array list
+    // Capacità attuale della tabella
     private int numBuckets;
 
-    // Current size of array list
+    // Capacità attuale della lista
     private int size;
 
-    // Constructor (Initializes capacity, size and
-    // empty chains.
+    // Costruttore per inizializzare la lista vuota con una dimansione fissa (10)
     public HashConcatenamento() {
         bucketArray = new ArrayList<>();
         numBuckets = 10;
         size = 0;
 
-        // Create empty chains
         for (int i = 0; i < numBuckets; i++)
             bucketArray.add(null);
     }
@@ -31,43 +33,43 @@ class HashConcatenamento<K, V> implements MyDictionary<K,V>{
     public int size() { return size; }
     public boolean isEmpty() { return size() == 0; }
 
-    // This implements hash function to find index
-    // for a key
+    // Funzione ausiliaria per ricercare l'indice di una chiave
+    // ritorna il suo valore in hash
     private int getBucketIndex(K key) {
         int hashCode = key.hashCode();
         int index = hashCode % numBuckets;
         return Math.abs(index);
     }
 
-    // Method to remove a given key
+    // Metodo per la rimozione di una chiave
     @Override
     public V delete(K key) {
-        // Apply hash function to find index for given key
+        // Applico la funzione di hash
         int bucketIndex = getBucketIndex(key);
 
-        // Get head of chain
+        // Punto alla testa della lista
         HashNode<K, V> head = bucketArray.get(bucketIndex);
 
-        // Search for key in its chain
+        // Ricerco la chiave nella lista
         HashNode<K, V> prev = null;
         while (head != null) {
-            // If Key found
+            // Se non trovo la chiave
             if (head.key.equals(key))
                 break;
 
-            // Else keep moving in chain
+            // Altrimenti continuo ad iterare
             prev = head;
             head = head.next;
         }
 
-        // If key was not there
+        // Se la chiave non era presente ritorno null
         if (head == null)
             return null;
 
-        // Reduce size
+        // Decremento la dimensione
         size--;
 
-        // Remove key
+        // Rimuovo la chiave trovata
         if (prev != null)
             prev.next = head.next;
         else
@@ -76,26 +78,25 @@ class HashConcatenamento<K, V> implements MyDictionary<K,V>{
         return head.value;
     }
 
-    // Returns value for a key
+    // Funzione per la ricerca del valore di una chiave
     @Override
     public V search(K key) {
-        // Find head of chain for given key
         int bucketIndex = getBucketIndex(key);
 
         HashNode<K, V> head = bucketArray.get(bucketIndex);
 
-        // Search key in chain
+        // Cerco la chiave nella tabella
         while (head != null) {
             if (head.key.equals(key))
                 return head.value;
             head = head.next;
         }
 
-        // If key not found
+        // Ritorno null se non trovo la chiave
         return null;
     }
 
-    //sistemata
+    // Metodo utilizzato per ricavare i valori di tutte le chiavi presenti nella tabella
     @Override
     public ArrayList<V> values(){
         ArrayList<HashNode<K, V>> temp = bucketArray;
@@ -110,14 +111,13 @@ class HashConcatenamento<K, V> implements MyDictionary<K,V>{
         return values;
     }
 
-    // Adds a key value pair to hash
+    // Metodo per l'inserzione di una coppia <Chiave, Valore> nella tabella
     @Override
     public void insert(K key, V value) {
-        // Find head of chain for given key
         int bucketIndex = getBucketIndex(key);
         HashNode<K, V> head = bucketArray.get(bucketIndex);
 
-        // Check if key is already present
+        // Controllo se la chiave è già presente e in caso affermativo aggiorno il valore
         while (head != null) {
             if (head.key.equals(key)) {
                 head.value = value;
@@ -126,15 +126,15 @@ class HashConcatenamento<K, V> implements MyDictionary<K,V>{
             head = head.next;
         }
 
-        // Insert key in chain
+        // Caso in cui la chiave non è presente
+        // Incremento la dimensione
         size++;
         head = bucketArray.get(bucketIndex);
         HashNode<K, V> newNode = new HashNode<K, V>(key, value);
         newNode.next = head;
         bucketArray.set(bucketIndex, newNode);
 
-        // If load factor goes beyond threshold, then
-        // double hash table size
+        // Se il loadfactor supera 0.7 aumento la dimensione della tabella per normalizzare i valori
         if ((1.0*size)/numBuckets >= 0.7) {
             ArrayList<HashNode<K, V>> temp = bucketArray;
             bucketArray = new ArrayList<>();
@@ -152,42 +152,3 @@ class HashConcatenamento<K, V> implements MyDictionary<K,V>{
         }
     }
 }
-
-/**
- *
- * VECCHIA IMPLEMENTAZIONE
- *
- public class HashConcatenamento<K extends Comparable<K>, V> {
- // Initializing a Dictionary
- //ArrayList<Hashtable<String, String>> geek = new ArrayList<Hashtable<String, String>>();
- Hashtable<String, ArrayList<Movie>> geek = new Hashtable<String, ArrayList<Movie>>();
- String sfr;
-
- //@Override
- public void insert(String key, ArrayList<Movie> value) {
- geek.put(key, value);
- }
-
-
- //@Override
- public ArrayList<Movie> search(String key) {
- Set<String> keys = geek.keySet();
-
- //Obtaining iterator over set entries
- Iterator<String> itr = keys.iterator();
-
- //Displaying Key and value pairs
- while (itr.hasNext()) {
- // Getting Key
- sfr = itr.next();
- if (sfr == key) {
- return (geek.get(sfr));
- }
- }
- return null;
- }
- public void delete(String key){
- geek.remove(key);
- }
- }
- **/

@@ -1,6 +1,11 @@
 package com.company.ceriomollica;
 
-// A node of chains
+/**
+ * Classe ausiliaria utilizzata per l'implementazione dei nodi di HashConcatenamento
+ *
+ * @param <K> chiave identificativa del nodo
+ * @param <V> valore di ogni nodo
+ */
 public class HashNode<K, V> {
     K key;
     V value;
