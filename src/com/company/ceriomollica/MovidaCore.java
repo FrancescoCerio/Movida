@@ -10,10 +10,7 @@ package com.company.ceriomollica;
 import com.company.commons.*;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Map;
-import java.util.Stack;
+import java.util.*;
 
 
 public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMovidaCollaborations {
@@ -95,10 +92,10 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
 
          // test
 
-         Movie[] q = searchMostVotedMovies(3);
+         Movie[] q = searchMostRecentMovies(5);
 
          for(Movie a: q){
-             System.out.println(a.getTitle());
+             System.out.println(a.getTitle() + "= " + a.getVotes());
          }
 
      }
@@ -372,33 +369,34 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
         return m;
     }
 
-    // TODO: CONTROLLARE ORDINAMENTO DEI VALORI, NON RITORNA IL PIù GRANDE
+    // TESTATA
     @Override
     public Movie[] searchMostVotedMovies(Integer N) {
         Movie[] m = new Movie[N];
         Movie[] listMov = this.movies.values().toArray(new Movie[0]);
-        Stack<Movie> temp = new Stack<Movie>();
         this.sorts.sort("votes", listMov);
 
+        // Definisco la lista dei valori e chiamo reverse() in modo da ordinare in ordine decrescente i valori
+        List<Movie> temp = Arrays.asList(listMov);
+        Collections.reverse(temp);
         return getMovies(N, m, listMov, temp);
     }
-
+    
+    // TESTATA
     @Override
     public Movie[] searchMostRecentMovies(Integer N) {
         Movie[] m = new Movie[N];
         Movie[] listMov = this.movies.values().toArray(new Movie[0]);
-        Stack<Movie> temp = new Stack<Movie>();
-        this.sorts.sort("year", listMov);
 
+        this.sorts.sort("year", listMov);
+        List<Movie> temp = Arrays.asList(listMov);
+        Collections.reverse(temp);
         return getMovies(N, m, listMov, temp);
     }
 
     // Funzione ausiliaria per le funzioni di ricerca searchMostVotedMovies e searchMostRecentMovies
-    // ridcue la ridondanza di codice
-    private Movie[] getMovies(Integer N, Movie[] m, Movie[] listMov, Stack<Movie> temp) {
-        for(Movie el:listMov){
-            temp.push(el);
-        }
+    // riduce la ridondanza di codice
+    private Movie[] getMovies(Integer N, Movie[] m, Movie[] listMov, List<Movie> temp) {
 
         if (listMov.length <= N){
             return listMov;
