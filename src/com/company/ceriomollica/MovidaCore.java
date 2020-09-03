@@ -46,7 +46,6 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
      *
      * @throws MovidaFileException in caso di errore di caricamento
      */
-    //TODO: Creare una classe Person e un relativo oggetto per salvare gli attori e il Director di ogni film
     //Testata fin ora, sembra funzionare tutto
      public void loadFromFile(File f) {
          // Chiamo loadFilm() che controla se il file rispetta il formato e carica i dati in un array Movie
@@ -92,11 +91,12 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
 
          // test
 
-         Movie[] q = searchMostRecentMovies(5);
+         Movie[] q = searchMoviesByTitle("a");
 
          for(Movie a: q){
              System.out.println(a.getTitle() + "= " + a.getVotes());
          }
+
 
      }
 
@@ -158,7 +158,7 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
         this.movies = new HashConcatenamento<>();
         this.character = new HashConcatenamento<>();
         this.collaboration = new Graph();
-        //TODO: Aggiungere altre strutture una volta implementate
+        this.sorts = new SelectionSort();
     }
 
     /**
@@ -188,15 +188,18 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
      * @return <code>true</code> se il film � stato trovato e cancellato,
      * 		   <code>false</code> in caso contrario
      */
+    // TESTATA
     public boolean deleteMovieByTitle(String title){
-        Movie temp = this.movies.search(title);
+        Movie temp = this.movies.search(title.trim().toLowerCase().replaceAll("\\s", ""));
+
         if(temp != null){
+            System.out.println(temp.getTitle());
             // Decremento di 1 il numero di film a cui ogni attore del cast ha preso parte
             for(Person p : temp.getCast()){
                 Character actor = this.character.search(p.getName());
                 actor.decMovie();
             }
-            this.movies.delete(temp.getTitle());
+            Movie m = this.movies.delete(temp.getTitle().trim().toLowerCase().replaceAll("\\s", ""));
             return true;
         } else
             return false;
@@ -381,7 +384,7 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
         Collections.reverse(temp);
         return getMovies(N, m, listMov, temp);
     }
-    
+
     // TESTATA
     @Override
     public Movie[] searchMostRecentMovies(Integer N) {
