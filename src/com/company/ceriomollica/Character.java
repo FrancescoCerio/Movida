@@ -13,7 +13,7 @@ import com.company.commons.Person;
 public class Character extends Person implements CustomComparable{
 
     private Integer num_movies;
-    private Boolean isActor;
+    private Boolean isActor; // valore booleano per identificare se un Character è un attore
 
     public Character(String name, Integer num_movies, Boolean isActor) {
         super(name);

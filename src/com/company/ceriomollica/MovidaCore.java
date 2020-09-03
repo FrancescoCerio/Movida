@@ -88,16 +88,6 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
          for(Movie m : collab_movies){
              this.collaboration.populateCollaboration(m);
          }
-
-         // test
-
-         Person[] q = searchMostActiveActors(10);
-
-         for(Person a: q){
-             System.out.println(a.getName() + " ");
-         }
-
-
      }
 
 
@@ -351,25 +341,28 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
         return m.toArray(new Movie[0]);
     }
 
+    // TESTATA
     @Override
     public Movie[] searchMoviesStarredBy(String name) {
-        // Creo un array di Movie con dimensione pari al numero di film a cui l'attore ha preso parte
-        Movie[] m = new Movie[this.character.search(name.trim().toLowerCase().replaceAll("\\s", "")).getNum_movies()];
+        // Creo un array di Movie in cui salvare la lista di film a cui l'attore ha preso parte
+        ArrayList<Movie> m = new ArrayList<>();
         // Ottengo tutti i film presenti nel DB
-        Movie[] am = this.movies.values().toArray(new Movie[0]);
+        ArrayList<Movie> am = this.movies.values();
 
         // Controllo per ogni film presente in DB se il nome dell'attore è presente nel cast e se presente
         // aggiungo il film al vettore dei film da ritornare
-        int i;
-        for(i = 0; i < am.length; i++){
-            Person[] tmp_cast = am[i].getCast();
+        int i = 0;
+        for(Movie mo : am){
+            Person[] tmp_cast = mo.getCast();
             for(Person tmp_act : tmp_cast){
                 if (tmp_act.compareTo(new Person(name)) == 0){
-                    m[i] = am[i];
+                    m.add(mo);
                 }
+                i++;
             }
         }
-        return m;
+
+        return m.toArray(new Movie[0]);
     }
 
     // TESTATA
@@ -440,11 +433,16 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
         }
     }
 
-
-
+    // Funzione main utilizzata per il test delle funzioni
     public static void main(String[] args) {
         MovidaCore m = new MovidaCore();
         m.loadFromFile(new File("/Users/francesco/IdeaProjects/Movida/src/com/company/commons/esempio-formato-dati.txt"));
+
+        Movie[] c = m.searchMoviesStarredBy("Robert    DE nIro");
+        for(Movie a : c){
+            System.out.println(a.getTitle());
+        }
+
         File file = new File("test.txt");
         m.saveToFile(file);
     }
