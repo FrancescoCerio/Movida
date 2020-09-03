@@ -18,7 +18,7 @@ public class HeapSort implements Sorty {
         }
         heapSort(c, type);
         
-        i = 0;
+        i = 1;
         while (i < c.length){
             comp[i-1] = c[i];
             i++;
