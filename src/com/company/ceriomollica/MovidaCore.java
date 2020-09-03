@@ -66,7 +66,7 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
              // Se non dovesse essere presente lo inserisco creando un nuovo oggetto inizializzando a zero il numero di film
              Character character_director = this.character.search(director);
              if(character_director == null){
-                 this.character.insert(director, new Character(director, 0));
+                 this.character.insert(director, new Character(director, 0, false));
              }
 
              // Cast
@@ -77,7 +77,7 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
                  // Vedo se l'attore è presente nel dizionario e incremento il numero di film
                  // altrimenti lo inserisco
                  if(actor == null)
-                     this.character.insert(current_actor, new Character(current_actor, 0));
+                     this.character.insert(current_actor, new Character(current_actor, 0, true));
                  else
                      actor.incMovie();
              }
@@ -91,10 +91,10 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
 
          // test
 
-         Movie[] q = searchMoviesByTitle("a");
+         Person[] q = searchMostActiveActors(10);
 
-         for(Movie a: q){
-             System.out.println(a.getTitle() + "= " + a.getVotes());
+         for(Person a: q){
+             System.out.println(a.getName() + " ");
          }
 
 
@@ -354,7 +354,7 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
     @Override
     public Movie[] searchMoviesStarredBy(String name) {
         // Creo un array di Movie con dimensione pari al numero di film a cui l'attore ha preso parte
-        Movie[] m = new Movie[this.character.search(name).getNum_movies()];
+        Movie[] m = new Movie[this.character.search(name.trim().toLowerCase().replaceAll("\\s", "")).getNum_movies()];
         // Ottengo tutti i film presenti nel DB
         Movie[] am = this.movies.values().toArray(new Movie[0]);
 
@@ -416,12 +416,19 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
     public Person[] searchMostActiveActors(Integer N) {
         Person[] c = new Person[N];
         Character[] listPeop = this.character.values().toArray(new Character[0]);
-        this.sorts.sort("numFilm", listPeop);
-        Stack<Character> temp = new Stack<Character>();
+        List<Character> temp = new ArrayList<>();
 
-        for(Character el : listPeop){
-            temp.push(el);
+        int j;
+        for(j = 0; j < listPeop.length; j++){
+            if(listPeop[j].isActor()) {
+                temp.add(listPeop[j]);
+                j++;
+            }
         }
+
+        this.sorts.sort("numFilm", listPeop);
+
+        Collections.reverse(temp);
 
         if (listPeop.length <= N){
             return listPeop;

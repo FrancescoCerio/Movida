@@ -13,10 +13,12 @@ import com.company.commons.Person;
 public class Character extends Person implements CustomComparable{
 
     private Integer num_movies;
+    private Boolean isActor;
 
-    public Character(String name, Integer num_movies) {
+    public Character(String name, Integer num_movies, Boolean isActor) {
         super(name);
         this.num_movies = num_movies;
+        this.isActor = isActor;
     }
 
     public Integer getNum_movies() {
@@ -30,6 +32,8 @@ public class Character extends Person implements CustomComparable{
     public void decMovie(){
         this.num_movies--;
     }
+
+    public boolean isActor(){return this.isActor;}
 
     @Override
     public int customCompare(String param, CustomComparable c) {
