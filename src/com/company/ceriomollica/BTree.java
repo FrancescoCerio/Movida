@@ -120,12 +120,16 @@ public class BTree<K extends Comparable<K>, V> implements MyDictionary<K,V>{
 
         Deque<Node> queue = new LinkedList<Node>();
         queue.add(root);
-        Node x; 
+        Node x;
+        int cmp;
         while (!queue.isEmpty()) {
             x = queue.poll();
-            if (x.key == key) return (V)x.val;
-            queue.add(x.left);
-            queue.add(x.right):
+            if(x != null){
+                if (x.key.equals(key)) return x.val;
+                cmp = key.compareTo(x.key);
+                if(cmp < 0) queue.add(x.left);
+                else queue.add(x.right);
+            }
         }
         return null;
     }

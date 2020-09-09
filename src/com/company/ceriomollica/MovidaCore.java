@@ -24,7 +24,7 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
         this.sorts = new HeapSort();
         this.db_utils = new DBUtils();
         this.movies = new BTree<>();
-        this.character = new HashConcatenamento<>();
+        this.character = new BTree<>();
         this.collaboration = new Graph();
     }
 
@@ -86,7 +86,6 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
 
          Movie[] collab_movies = this.movies.values().toArray(new Movie[0]);
          for(Movie m : collab_movies){
-             System.out.println(m.getTitle());
              this.collaboration.populateCollaboration(m);
          }
      }
@@ -439,9 +438,20 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
         m.loadFromFile(new File("/Users/francesco/IdeaProjects/Movida/src/com/company/commons/esempio-formato-dati.txt"));
 
         Collaboration[] co = m.maximizeCollaborationsInTheTeamOf(new Person("robertdeniro"));
+        /*
         for(Collaboration c : co){
             System.out.println(c.getActorA().getName() + " -> " + c.getActorB().getName() + ": " + c.getScore());
         }
+
+         */
+
+        Movie[] d = m.getAllMovies();
+        for(Movie h : d){
+            System.out.println(h.getDirector().getName());
+        }
+
+        Movie moo = m.getMovieByTitle("taxidriver");
+        System.out.println(moo.getYear());
 
         File file = new File("test.txt");
         m.saveToFile(file);
