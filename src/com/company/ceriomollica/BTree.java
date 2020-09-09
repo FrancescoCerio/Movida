@@ -231,46 +231,7 @@ public class BTree<K extends Comparable<K>, V> implements MyDictionary<K,V>{
         else                 return max(x.right);
     }
 
-    /**
-     * Returns the largest key in the symbol table less than or equal to {@code key}.
-     *
-     * @param  key the key
-     * @return the largest key in the symbol table less than or equal to {@code key}
-     * @throws NoSuchElementException if there is no such key
-     * @throws IllegalArgumentException if {@code key} is {@code null}
-     */
-    public K floor(K key) {
-        if (key == null) throw new IllegalArgumentException("argument to floor() is null");
-        if (isEmpty()) throw new NoSuchElementException("calls floor() with empty symbol table");
-        Node x = floor(root, key);
-        if (x == null) throw new NoSuchElementException("argument to floor() is too small");
-        else return x.key;
-    }
-
-    private Node floor(Node x, K key) {
-        if (x == null) return null;
-        int cmp = key.compareTo(x.key);
-        if (cmp == 0) return x;
-        if (cmp <  0) return floor(x.left, key);
-        Node t = floor(x.right, key);
-        if (t != null) return t;
-        else return x;
-    }
-
-    public K floor2(K key) {
-        K x = floor2(root, key, null);
-        if (x == null) throw new NoSuchElementException("argument to floor() is too small");
-        else return x;
-
-    }
-
-    private K floor2(Node x, K key, K best) {
-        if (x == null) return best;
-        int cmp = key.compareTo(x.key);
-        if      (cmp  < 0) return floor2(x.left, key, best);
-        else if (cmp  > 0) return floor2(x.right, key, x.key);
-        else               return x.key;
-    }
+    
 
     /**
      * Returns the smallest key in the symbol table greater than or equal to {@code key}.
