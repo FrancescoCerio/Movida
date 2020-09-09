@@ -116,6 +116,17 @@ public class BTree<K extends Comparable<K>, V> implements MyDictionary<K,V>{
 
     @Override
     public V search(K key) {
+        if(key == "") return null;
+
+        Deque<Node> queue = new LinkedList<Node>();
+        queue.add(root);
+        Node x; 
+        while (!queue.isEmpty()) {
+            x = queue.poll();
+            if (x.key == key) return (V)x.val;
+            queue.add(x.left);
+            queue.add(x.right):
+        }
         return null;
     }
 
