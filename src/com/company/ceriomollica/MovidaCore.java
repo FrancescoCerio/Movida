@@ -437,8 +437,13 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
         MovidaCore m = new MovidaCore();
         m.loadFromFile(new File("/Users/francesco/IdeaProjects/Movida/src/com/company/commons/esempio-formato-dati.txt"));
 
-        Collaboration[] co = m.maximizeCollaborationsInTheTeamOf(new Person("robertdeniro"));
+        System.out.println();
+        System.out.println("Gruppo Zakkoni | Progetto MOVIDA");
+        System.out.println(" - Test di alcune funzioni implementate - ");
+        System.out.println();
 
+        System.out.println("Test effettuati prendendo come test a campione l'attrice Sela Ward.");
+        System.out.println();
         System.out.println("----------------- PEOPLE -----------------");
 
         Person[] peop = m.getAllPeople();
@@ -475,11 +480,12 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
 
         System.out.println("----------------- MAX COLLABS -----------------");
 
+        Collaboration[] co = m.maximizeCollaborationsInTheTeamOf(new Person("robertdeniro"));
         for(Collaboration c : co){
             System.out.println(c.getActorA().getName() + " -> " + c.getActorB().getName() + ": " + c.getScore());
         }
 
-        System.out.println("----------------- ALL MOVIES ELEMENTS -----------------");
+        System.out.println("----------------- LIST OF ALL DIRECTORS -----------------");
 
         Movie[] d = m.getAllMovies();
         for(Movie h : d){
