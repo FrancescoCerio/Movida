@@ -269,7 +269,7 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
      */
     @Override
     public Collaboration[] maximizeCollaborationsInTheTeamOf(Person actor) {
-        return new Collaboration[0];
+        return this.collaboration.maximizeCollaborationsInTheTeamOf(actor);
     }
 
     @Override
@@ -437,9 +437,9 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
         MovidaCore m = new MovidaCore();
         m.loadFromFile(new File("/Users/francesco/IdeaProjects/Movida/src/com/company/commons/esempio-formato-dati.txt"));
 
-        Movie[] c = m.searchMoviesStarredBy("selaward");
-        for(Movie a : c){
-            System.out.println(a.getTitle());
+        Collaboration[] co = m.maximizeCollaborationsInTheTeamOf(new Person("robertdeniro"));
+        for(Collaboration c : co){
+            System.out.println(c.getActorA().getName() + " -> " + c.getActorB().getName() + ": " + c.getScore());
         }
 
         File file = new File("test.txt");

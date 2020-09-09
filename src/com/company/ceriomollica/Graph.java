@@ -13,6 +13,8 @@ import com.company.commons.IMovidaCollaborations;
 import com.company.commons.Movie;
 import com.company.commons.Person;
 
+import javax.lang.model.type.UnionType;
+import javax.management.MBeanFeatureInfo;
 import java.util.*;
 
 public class Graph implements IMovidaCollaborations {
@@ -75,9 +77,6 @@ public class Graph implements IMovidaCollaborations {
     // TESTATO
     @Override
     public Person[] getTeamOf(Person actor) {
-
-        // Ricerco la lista degli attori diretti che collaborano con l'attore passato come parametro
-        Person[] direct_collabs = getDirectCollaboratorsOf(actor);
         ArrayList<Person> actor_list = new ArrayList<>();
         ArrayDeque<Person> actor_to_visit = new ArrayDeque<>();
         ArrayList<Person> visited = new ArrayList<>(); // lista di attori già visitati
@@ -124,7 +123,41 @@ public class Graph implements IMovidaCollaborations {
 
     @Override
     public Collaboration[] maximizeCollaborationsInTheTeamOf(Person actor) {
-        return new Collaboration[0];
+        Person[] team = getDirectCollaboratorsOf(actor);
+        // Popolo la lista delle collaborazioni di ogni componente del team
+        ArrayList<Collaboration> c = new ArrayList<>(this.graph.get(actor));
+
+        // Ordino la lista dei collaboratori dell'attore in ordine decrescente e la inserisco in un ArrayDeque
+        Comparator<Collaboration> compare = Comparator.comparing(Collaboration::getScore);
+        c.sort(compare);
+        Collections.reverse(c);
+        ArrayDeque<Collaboration> to_maximize = new ArrayDeque<>(c);
+
+        return maxICC(to_maximize);
+    }
+
+
+    // Funzione ausiliaria per la ricerca del IIC(T) 
+    Collaboration[] maxICC(ArrayDeque<Collaboration> collab_array){
+        ArrayList<Collaboration> maximize = new ArrayList<>();
+        ArrayList<Person> visited = new ArrayList<>();
+
+        while(!collab_array.isEmpty()) {
+            Collaboration p = collab_array.poll();
+
+            if(!visited.contains(p.getActorB())){
+                visited.add(p.getActorA());
+                visited.add(p.getActorB());
+                maximize.add(p);
+                for(Collaboration c:this.graph.get(p.getActorB())){
+                    if(!visited.contains(c.getActorB())){
+                        collab_array.add(c);
+                    }
+                }
+            }
+
+        }
+        return maximize.toArray(new Collaboration[0]);
     }
 }
 
