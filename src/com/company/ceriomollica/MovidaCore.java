@@ -116,7 +116,7 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
                     bw.newLine();
                     bw.write("Year: " + movie.getYear().toString());
                     bw.newLine();
-                    bw.write("Director: " + movie.getDirector().getName());
+                    bw.write("Director: " + movie.getDirector().getName().trim());
                     bw.newLine();
                     bw.write("Cast: " + movie.getPersonCast());
                     bw.newLine();
@@ -438,20 +438,53 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
         m.loadFromFile(new File("/Users/francesco/IdeaProjects/Movida/src/com/company/commons/esempio-formato-dati.txt"));
 
         Collaboration[] co = m.maximizeCollaborationsInTheTeamOf(new Person("robertdeniro"));
-        /*
+
+        System.out.println("----------------- PEOPLE -----------------");
+
+        Person[] peop = m.getAllPeople();
+        for(Person pe : peop){
+            System.out.println(pe.getName());
+        }
+
+        System.out.println("----------------- DIRECT COLLABS -----------------");
+
+        Person[] coll = m.getDirectCollaboratorsOf(new Person("selaward"));
+        for(Person c : coll){
+            System.out.println(c.getName());
+        }
+
+
+        System.out.println("----------------- MOST VOTED -----------------");
+        Movie[] vote = m.searchMostVotedMovies(11);
+        for(Movie e : vote){
+            System.out.println(e.getTitle() + " voto: " + e.getVotes());
+        }
+
+        System.out.println("----------------- MOST ACTIVE -----------------");
+        Person[] act = m.searchMostActiveActors(11);
+        for(Person a : act){
+            System.out.println(a.getName());
+        }
+
+        System.out.println("----------------- TEAM -----------------");
+
+        Person[] team = m.getTeamOf(new Person("selaward"));
+        for(Person t : team){
+            System.out.println(t.getName());
+        }
+
+        System.out.println("----------------- MAX COLLABS -----------------");
+
         for(Collaboration c : co){
             System.out.println(c.getActorA().getName() + " -> " + c.getActorB().getName() + ": " + c.getScore());
         }
 
-         */
+        System.out.println("----------------- ALL MOVIES ELEMENTS -----------------");
 
         Movie[] d = m.getAllMovies();
         for(Movie h : d){
-            System.out.println(h.getDirector().getName());
+            System.out.println(h.getDirector().getName().trim());
         }
-
-        Movie moo = m.getMovieByTitle("taxidriver");
-        System.out.println(moo.getYear());
 
         File file = new File("test.txt");
         m.saveToFile(file);
