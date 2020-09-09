@@ -261,6 +261,7 @@ public class BTree<K extends Comparable<K>, V> implements MyDictionary<K,V>{
         return ceiling(x.right, key);
     }
 
+    
     /**
      * Returns all keys in the symbol table as an {@code Iterable}.
      * To iterate over all of the keys in the symbol table named {@code st},
@@ -272,7 +273,30 @@ public class BTree<K extends Comparable<K>, V> implements MyDictionary<K,V>{
         if (isEmpty()) return new PriorityQueue<K>();
         return keys(min(), max());
     }
+    
+    
+     /**
+     * Return the number of keys in the symbol table strictly less than {@code key}.
+     *
+     * @param  key the key
+     * @return the number of keys in the symbol table strictly less than {@code key}
+     * @throws IllegalArgumentException if {@code key} is {@code null}
+     */
+    public int rank(K key) {
+        if (key == null) throw new IllegalArgumentException("argument to rank() is null");
+        return rank(key, root);
+    }
 
+    // Number of keys in the subtree less than key.
+    private int rank(K key, Node x) {
+        if (x == null) return 0;
+        int cmp = key.compareTo(x.key);
+        if      (cmp < 0) return rank(key, x.left);
+        else if (cmp > 0) return 1 + size(x.left) + rank(key, x.right);
+        else              return size(x.left);
+    }
+    
+    
     /**
      * Returns all keys in the symbol table in the given range,
      * as an {@code Iterable}.
