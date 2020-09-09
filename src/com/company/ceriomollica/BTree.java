@@ -17,7 +17,7 @@ import java.util.*;
 
 public class BTree<K extends Comparable<K>, V> implements MyDictionary<K,V>{
     private Node root;             // root of BST
-
+    int i = 0;
     private class Node {
         private K key;           // sorted by key
         private V val;         // associated data
@@ -125,7 +125,6 @@ public class BTree<K extends Comparable<K>, V> implements MyDictionary<K,V>{
         if      (cmp < 0) x.left  = insert(x.left,  key, val);
         else if (cmp > 0) x.right = insert(x.right, key, val);
         else              x.val   = val;
-        System.out.println(key);
         x.size = 1 + size(x.left) + size(x.right);
         return x;
     }
@@ -176,7 +175,7 @@ public class BTree<K extends Comparable<K>, V> implements MyDictionary<K,V>{
     public V delete(K key) {
         if (key == null) throw new IllegalArgumentException("calls delete() with a null key");
         root = delete(root, key);
-        return (V)root;
+        return root.val;
     }
 
 
@@ -363,25 +362,22 @@ public class BTree<K extends Comparable<K>, V> implements MyDictionary<K,V>{
      *
      * @return the keys in the BST in level order traversal
      */
+    @Override
     public ArrayList<V> values() {
         ArrayList<V> keys = new ArrayList<V>();
-        Queue<BTree.Node> queue = new LinkedList<BTree.Node>();
+        Deque<Node> queue = new LinkedList<Node>();
         queue.add(root);
-        BTree.Node x = queue.remove();
-        while (x != null) {
-            if (x == null) continue;
-            keys.add((V) x.val);
-            queue.add(x.left);
-            queue.add(x.right);
-            x = queue.remove();
-
+        Node x;
+        while (!queue.isEmpty()) {
+            x = queue.poll();
+            if(x != null) {
+                queue.add(x.left);
+                queue.add(x.right);
+                keys.add(x.val);
+            }
         }
         return keys;
     }
-
-
-
-
 
 }
 

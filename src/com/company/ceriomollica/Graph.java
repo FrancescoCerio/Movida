@@ -137,7 +137,7 @@ public class Graph implements IMovidaCollaborations {
     }
 
 
-    // Funzione ausiliaria per la ricerca del IIC(T) 
+    // Funzione ausiliaria per la ricerca del IIC(T)
     Collaboration[] maxICC(ArrayDeque<Collaboration> collab_array){
         ArrayList<Collaboration> maximize = new ArrayList<>();
         ArrayList<Person> visited = new ArrayList<>();

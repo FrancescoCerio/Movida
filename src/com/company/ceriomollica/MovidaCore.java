@@ -23,7 +23,7 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
     MovidaCore(){
         this.sorts = new HeapSort();
         this.db_utils = new DBUtils();
-        this.movies = new HashConcatenamento<>();
+        this.movies = new BTree<>();
         this.character = new HashConcatenamento<>();
         this.collaboration = new Graph();
     }
@@ -86,6 +86,7 @@ public class MovidaCore implements IMovidaSearch, IMovidaConfig, IMovidaDB, IMov
 
          Movie[] collab_movies = this.movies.values().toArray(new Movie[0]);
          for(Movie m : collab_movies){
+             System.out.println(m.getTitle());
              this.collaboration.populateCollaboration(m);
          }
      }
